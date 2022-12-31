@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1672485740 source:d:\cb\tickethunt\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Registracija.h"
+
+1672485867 d:\cb\tickethunt\registracija.h
+
