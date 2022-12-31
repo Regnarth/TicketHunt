@@ -9,5 +9,6 @@ struct User {
   char username[MAX_USERNAME_LENGTH];
   char password[MAX_PASSWORD_LENGTH];
 };
-void register_user(struct User* user);
+void register_user();
+int provjeriUsername(char* username);
 #endif
