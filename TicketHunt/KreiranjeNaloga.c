@@ -1,10 +1,5 @@
 #include "KreiranjeNaloga.h"
 
-int main() {
-
-	kreirajNalog();
-	return 0;
-}
 void kreirajNalog() {
 
 	char vrstaNaloga[MAX];
