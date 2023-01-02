@@ -6,9 +6,10 @@
 #define MAX_PASSWORD_LENGTH 50
 
 struct User {
+    char ime[MAX_USERNAME_LENGTH];
+    char prezime[MAX_USERNAME_LENGTH];
   char username[MAX_USERNAME_LENGTH];
   char password[MAX_PASSWORD_LENGTH];
 };
-void register_user();
-int provjeriUsername(char* username);
+typedef struct User USER;
 #endif
