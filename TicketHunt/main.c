@@ -1,6 +1,7 @@
 //#include <stdio.h>
 #include <stdlib.h>
 #include "Registracija.c"
+#include "PregledNaloga.c"
 #include "KreiranjeNaloga.c"
 #include "SuspendovanjeNaloga.c"
 #include "AktivacijaNaloga.c"
