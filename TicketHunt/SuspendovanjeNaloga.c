@@ -8,6 +8,7 @@ void suspendujNalog() {
 	scanf("%s", korisnickoIme);
 	FILE* f = 0;
 	while (provjeraSuspenzije(f, korisnickoIme)) {
+		printf("Nalog je vec suspendovan.\n");
 		printf("Izaberite drugi nalog.\n");
 		scanf("%s", korisnickoIme);
 	}
@@ -23,7 +24,6 @@ int provjeraSuspenzije(FILE* f, char* korisnickoIme) {
 		char pom[MAX];
 		while (fscanf(f, "%s", pom) == 1) {
 			if (strcmp(korisnickoIme, pom) == 0) {
-				printf("Nalog je vec suspendovan.\n");
 				fclose(f);
 				return 1;
 			}
