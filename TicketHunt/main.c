@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "Registracija.c"
 #include "KreiranjeNaloga.c"
+#include "SuspendovanjeNaloga.c"
 
 int main()
 {
