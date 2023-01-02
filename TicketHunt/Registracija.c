@@ -4,31 +4,44 @@
 
 void register_user()
 {
-    struct User user;
+    USER user;
     FILE* fp;
-    int pom;
     printf("Enter a username: ");
-    fgets(user.username, MAX_USERNAME_LENGTH, stdin);
-    if(provjeriUsername(user.username))
+    scanf("%s",user.username);
+    if(!provjeriUsername(user.username))
     {
-        if(fp=fopen("Korisnici.txt","w"))
+        if(fp=fopen("Korisnici.txt","a+"))
         {
-            fprintf(fp,"%s",user.username);
+
+            printf("Enter your name: ");
+            scanf("%s",user.ime);
+            printf("Enter your lastname: ");
+            scanf("%s",user.prezime);
             printf("Enter a password: ");
-            fgets(user.password, MAX_PASSWORD_LENGTH, stdin);
-            fprintf(fp,"%s",user.password);
-        }else printf("Neuspjesno otvoren fajl!");
+            scanf("%s",user.password);
+            fprintf(fp,"%s %s %s %s\n",user.ime,user.prezime,user.username,user.password);
+            fclose(fp);
+        }
+        else printf("Neuspjesno otvoren fajl!");
 
 
     }
+    else printf("Odabrali ste postojece korisnicko ime!");
 }
 
-int provjeriUsername(char* username){
-FILE *fp;
-char pom[MAX_USERNAME_LENGTH];
-if(fp=fopen("Korisnici.txt","w")){
-  fscanf(fp,"%s",pom);
-  if(strcmp(pom,username)==0)return 1;
-} else printf("Neuspjesno otvoren fajl!");
-return 0;
+int provjeriUsername(char* username)
+{
+    int size=1;
+    USER pom;
+    FILE* fp;
+    int i=0;
+    if(fp=fopen("Korisnici.txt","r"))
+    {
+        while(fscanf(fp,"%s %s %s %s",pom.ime,pom.prezime,pom.username,pom.password)!=EOF)
+        {
+            if(strcmp(username,pom.username)==0)return 1;
+        }
+        fclose(fp);
+    }
+    return 0;
 }
