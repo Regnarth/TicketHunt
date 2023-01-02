@@ -9,8 +9,7 @@
 int main()
 {
 struct User user;
-  register_user(&user);
-  printf("Successfully registered user with username '%s' and password '%s'\n", user.username, user.password);
+  register_user();
   kreirajNalog();
   suspendujNalog();
   aktivirajNalog();
