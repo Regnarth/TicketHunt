@@ -41,7 +41,7 @@ int dodajKlijenta(FILE* f, KLIJENT* klijent) {
 		printf("korisnickoIme:"); scanf("%s", klijent->korisnickoIme);
 	}
 	while (provjeriUsername(klijent->korisnickoIme)){
-		printf("Korisnicko ime vec postoji.");
+		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", klijent->korisnickoIme);
 	}
 
@@ -68,7 +68,7 @@ int dodajAdministratora(FILE* f, ADMINISTRATOR* administrator) {
 		printf("korisnickoIme:"); scanf("%s", administrator->korisnickoIme);
 	}
 	while (provjeriUsername(administrator->korisnickoIme)){
-		printf("Korisnicko ime vec postoji.");
+		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", administrator->korisnickoIme);
 	}
 
