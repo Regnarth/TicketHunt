@@ -1,5 +1,6 @@
-#ifndef AKTIVACIJANALOGA_H
-#define AKTIVACIJANALOGA_H
+#ifndef AKTIVACIJA_NALOGA_H
+#define AKTIVACIJA_NALOGA_H
+//AKTIVACIJA_NALOGA_H
 #define MAX 20
 #include <stdio.h>
 #include <string.h>
