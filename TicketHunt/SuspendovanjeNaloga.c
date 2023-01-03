@@ -28,6 +28,7 @@ int provjeraSuspenzije(FILE* f, char* korisnickoIme) {
 				return 1;
 			}
 		}
+		fclose(f);
 	}
 
 	return 0;
