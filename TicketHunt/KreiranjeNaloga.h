@@ -1,5 +1,6 @@
-#ifndef KREIRANJENALOGA_H
-#define KREIRANJENALOGA_H
+#ifndef KREIRANJE_NALOGA_H
+#define KREIRANJE_NALOGA_H
+//KREIRANJE_NALOGA_H
 #define MAX 20
 #include <stdio.h>
 #include <string.h>
