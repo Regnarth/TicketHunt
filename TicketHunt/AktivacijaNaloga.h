@@ -1,4 +1,5 @@
-#pragma once
+#ifndef AKTIVACIJANALOGA_H
+#define AKTIVACIJANALOGA_H
 #define MAX 20
 #include <stdio.h>
 #include <string.h>
@@ -8,8 +9,4 @@ typedef struct nalog{
 	char korisnickoIme[MAX];
 	struct nalog* next;
 } NALOG;
-
-void aktivirajNalog();
-void dodaj(NALOG**, char*);
-int ukloniNalog(FILE*, NALOG*);
-void brisi(NALOG**);
+#endif
