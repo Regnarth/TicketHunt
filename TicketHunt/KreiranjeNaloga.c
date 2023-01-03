@@ -76,6 +76,7 @@ int traziKlijenta(FILE* f, char* korisnickoIme) {
 		while (fscanf(f, "%s %s %s %s", klijent.ime, klijent.prezime, klijent.korisnickoIme, klijent.sifra) == 4) {
 			if (strcmp(klijent.korisnickoIme, korisnickoIme) == 0) {
 				printf("Korisnicko ime vec postoji.\n");
+				fclose(f);
 				return 1;
 			}
 		}
@@ -91,6 +92,7 @@ int traziAdministratora(FILE* f, char* korisnickoIme) {
 		while (fscanf(f, "%s %s %s %s", administrator.ime, administrator.prezime, administrator.korisnickoIme, administrator.sifra) == 4) {
 			if (strcmp(administrator.korisnickoIme, korisnickoIme) == 0) {
 				printf("Korisnicko ime vec postoji.\n");
+				fclose(f);
 				return 1;
 			}
 		}
