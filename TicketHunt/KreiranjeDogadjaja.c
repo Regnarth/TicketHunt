@@ -192,11 +192,3 @@ int validacijaDatuma(int dan, int mjesec, int godina)
     }
     return 1;
 }
-
-int main()
-{
-    DOGADJAJ dogadjaj1;
-    unosDogadjaja(dogadjaj1);
-    return 0;
-
-}
