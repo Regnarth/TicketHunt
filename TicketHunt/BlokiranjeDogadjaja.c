@@ -24,7 +24,7 @@ int provjeraAktivnostiDogadjaja(FILE* fp, char* imeDogadjaja)
     if (fp = fopen("Blokirani.txt", "r"))
     {
         char temp[MAX_EVENT_NAME_LENGHT];
-        while (fgets(temp, 50, fp))
+        while (fgets(temp, MAX_EVENT_NAME_LENGHT, fp))
         {
             if (strcmp(imeDogadjaja, temp) == 0)
             {
