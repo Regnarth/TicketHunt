@@ -24,6 +24,7 @@ typedef struct dogadjaj {
 	int cijena_ulaznice;
 	int broj_mjesta;
 	int broj_prodatih_ulaznica;
+	int kupuje_na_ime;
 } DOGADJAJ;
 
 
