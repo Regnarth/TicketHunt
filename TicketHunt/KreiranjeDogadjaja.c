@@ -58,9 +58,25 @@ int unosDogadjaja(DOGADJAJ dogadjaj) {
 
     }
     dogadjaj.broj_prodatih_ulaznica=0;
+     int kupuje_validno=0;
+    while(kupuje_validno==0)
+    {
+
+        printf("Da li kupujete na ime? 'Da-1' ili 'Ne-0' :"); scanf("%d", &dogadjaj.kupuje_na_ime);
+        if (validacijaKupovine(dogadjaj.kupuje_na_ime)==1)
+        {
+            kupuje_validno=1;
+        }
+
+    }
     if (f = fopen("Dogadjaji.txt", "a")) {
 
-		fprintf(f, "%s %d.%d.%d %d:%d %d %d %d\n", dogadjaj.naziv,dogadjaj.datum.dan, dogadjaj.datum.mjesec, dogadjaj.datum.godina, dogadjaj.vrijeme.sat, dogadjaj.vrijeme.minut, dogadjaj.cijena_ulaznice, dogadjaj.broj_mjesta, dogadjaj.broj_prodatih_ulaznica);
+        if(dogadjaj.kupuje_na_ime==0)
+
+            fprintf(f, "%s %d.%d.%d %d:%d %d %d %d\n", dogadjaj.naziv,dogadjaj.datum.dan, dogadjaj.datum.mjesec, dogadjaj.datum.godina, dogadjaj.vrijeme.sat, dogadjaj.vrijeme.minut, dogadjaj.cijena_ulaznice, dogadjaj.broj_mjesta, dogadjaj.broj_prodatih_ulaznica);
+		else
+            fprintf(f, "%s %d.%d.%d %d:%d %d %d %d %d\n", dogadjaj.naziv,dogadjaj.datum.dan, dogadjaj.datum.mjesec, dogadjaj.datum.godina, dogadjaj.vrijeme.sat, dogadjaj.vrijeme.minut, dogadjaj.cijena_ulaznice, dogadjaj.broj_mjesta,dogadjaj.broj_prodatih_ulaznica, dogadjaj.kupuje_na_ime);
+
 		fclose(f);
 	}
 
@@ -133,6 +149,13 @@ int validacijaBrojaMjesta (int broj_mjesta)
         return 0;
     }
     return 1;
+}
+int validacijaKupovine (int kupuje_na_ime)
+{
+    if(kupuje_na_ime==1 || kupuje_na_ime==0)
+        return 1;
+    else
+        return 0;
 }
 int validacijaDatuma(int dan, int mjesec, int godina)
 {
