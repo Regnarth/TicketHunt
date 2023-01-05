@@ -14,6 +14,21 @@ int unosDogadjaja(DOGADJAJ dogadjaj) {
         }
 
     }
+	
+	printf("Unesite opis dogadjaja:");
+     gets(dogadjaj.opis_dogadjaja);
+     char* naziv_datoteke;
+     printf("%s", naziv_datoteke);
+     strcat(naziv_datoteke, dogadjaj.naziv);
+     strcat(naziv_datoteke, ".txt");
+
+	if(f=fopen(naziv_datoteke, "a"))
+    {
+        fprintf(f, "%s", dogadjaj.opis_dogadjaja);
+        fclose(f);
+    }
+	
+	
       int datum_validan=0;
     while(datum_validan==0)
     {
