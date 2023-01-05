@@ -25,6 +25,7 @@ typedef struct dogadjaj {
 	int broj_mjesta;
 	int broj_prodatih_ulaznica;
 	int kupuje_na_ime;
+	char opis_dogadjaja[MAX];
 } DOGADJAJ;
 
 
