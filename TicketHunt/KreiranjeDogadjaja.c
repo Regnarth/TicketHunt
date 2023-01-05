@@ -14,6 +14,8 @@ int unosDogadjaja(DOGADJAJ dogadjaj) {
         }
 
     }
+     printf("Unesite mjesto odrzavanja:");
+     gets(dogadjaj.mjesto);
 	
 	printf("Unesite opis dogadjaja:");
      gets(dogadjaj.opis_dogadjaja);
@@ -88,9 +90,9 @@ int unosDogadjaja(DOGADJAJ dogadjaj) {
 
         if(dogadjaj.kupuje_na_ime==0)
 
-            fprintf(f, "%s %d.%d.%d %d:%d %d %d %d\n", dogadjaj.naziv,dogadjaj.datum.dan, dogadjaj.datum.mjesec, dogadjaj.datum.godina, dogadjaj.vrijeme.sat, dogadjaj.vrijeme.minut, dogadjaj.cijena_ulaznice, dogadjaj.broj_mjesta, dogadjaj.broj_prodatih_ulaznica);
+            fprintf(f, "%s %d.%d.%d %d:%d %s %d %d %d\n", dogadjaj.naziv,dogadjaj.datum.dan, dogadjaj.datum.mjesec, dogadjaj.datum.godina, dogadjaj.vrijeme.sat, dogadjaj.vrijeme.minut, dogadjaj.mjesto, dogadjaj.cijena_ulaznice, dogadjaj.broj_mjesta, dogadjaj.broj_prodatih_ulaznica);
 		else
-            fprintf(f, "%s %d.%d.%d %d:%d %d %d %d %d\n", dogadjaj.naziv,dogadjaj.datum.dan, dogadjaj.datum.mjesec, dogadjaj.datum.godina, dogadjaj.vrijeme.sat, dogadjaj.vrijeme.minut, dogadjaj.cijena_ulaznice, dogadjaj.broj_mjesta,dogadjaj.broj_prodatih_ulaznica, dogadjaj.kupuje_na_ime);
+            fprintf(f, "%s %d.%d.%d %d:%d %s %d %d %d %d\n", dogadjaj.naziv,dogadjaj.datum.dan, dogadjaj.datum.mjesec, dogadjaj.datum.godina, dogadjaj.vrijeme.sat, dogadjaj.vrijeme.minut, dogadjaj.mjesto, dogadjaj.cijena_ulaznice, dogadjaj.broj_mjesta,dogadjaj.broj_prodatih_ulaznica, dogadjaj.kupuje_na_ime);
 
 		fclose(f);
 	}
