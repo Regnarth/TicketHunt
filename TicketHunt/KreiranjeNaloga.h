@@ -11,7 +11,7 @@ typedef struct klijent {
 	char prezime[MAX];
 	char korisnickoIme[MAX];
 	char sifra[MAX];
-	int suspendovan;
+	int brojPrijava;
 } KLIJENT;
 
 typedef struct administrator {
@@ -19,6 +19,7 @@ typedef struct administrator {
 	char prezime[MAX];
 	char korisnickoIme[MAX];
 	char sifra[MAX];
+	int brojPrijava;
 } ADMINISTRATOR;
 #endif
 
