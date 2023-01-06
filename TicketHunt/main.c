@@ -5,6 +5,7 @@
 #include "KreiranjeNaloga.c"
 #include "SuspendovanjeNaloga.c"
 #include "AktivacijaNaloga.c"
+#include "PrijavaPrvogAdministratora.c"
 
 int main()
 {
@@ -13,5 +14,6 @@ struct User user;
   kreirajNalog();
   suspendujNalog();
   aktivirajNalog();
+  prviAdministrator();
   return 0;
 }
