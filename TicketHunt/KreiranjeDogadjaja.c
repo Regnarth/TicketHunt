@@ -1,7 +1,7 @@
 #include "KreiranjeDogadjaja.h"
 
-int unosDogadjaja(DOGADJAJ dogadjaj) {
-
+int unosDogadjaja() {
+    DOGADJAJ dogadjaj;
     FILE* f;
     int naziv_validan = 0;
     while (naziv_validan == 0)
@@ -84,45 +84,40 @@ int unosDogadjaja(DOGADJAJ dogadjaj) {
             kupuje_validno = 1;
         }
 
+
     }
     if (f = fopen("Dogadjaji.txt", "a+"))
     {
         DOGADJAJ temp;
         int provjera_postojanja = 0;
-        while (fscanf(f, "%s %d.%d.%d %d:%d %s %d %d %d %d\n", temp.naziv, &temp.datum.dan, &temp.datum.mjesec, &temp.datum.godina, &temp.vrijeme.sat, &temp.vrijeme.minut, temp.mjesto, &temp.cijena_ulaznice, &temp.broj_mjesta, &temp.broj_prodatih_ulaznica, &temp.kupuje_na_ime) != EOF)
+        while (fscanf(f, "%s %d.%d.%d %d:%d %s %d %d %d %d %s\n", temp.naziv, &temp.datum.dan, &temp.datum.mjesec,
+            &temp.datum.godina, &temp.vrijeme.sat, &temp.vrijeme.minut, temp.mjesto, &temp.cijena_ulaznice,
+            &temp.broj_mjesta, &temp.broj_prodatih_ulaznica, &temp.kupuje_na_ime, temp.ID) != EOF)
         {
-            if (strcmp(temp.naziv, dogadjaj.naziv) == 0)
+            if ((strcmp(temp.naziv, dogadjaj.naziv) == 0) && (strcmp(temp.mjesto, dogadjaj.mjesto) == 0) &&
+                (temp.datum.godina == dogadjaj.datum.godina) && (temp.datum.mjesec == dogadjaj.datum.mjesec) &&
+                (temp.datum.dan == dogadjaj.datum.dan) && (temp.datum.sat == dogadjaj.datum.sat) && (temp.datum.sat == dogadjaj.datum.minut))
             {
-                if (strcmp(temp.mjesto, dogadjaj.mjesto) == 0)
-                {
-                    if (temp.datum.godina == dogadjaj.datum.godina)
-                    {
-                        if (temp.datum.mjesec == dogadjaj.datum.mjesec)
-                        {
-                            if (temp.datum.dan == dogadjaj.datum.dan)
-                            {
-                                if (temp.datum.sat == dogadjaj.datum.sat)
-                                {
-                                    if (temp.datum.minut == dogadjaj.datum.minut)
-                                    {
-                                        printf("---Dogadjaj koji ste unijeli vec postoji!---");
-                                        provjera_postojanja++;
-                                    }
 
-                                }
-                            }
-                        }
-                    }
-
-                }
+                provjera_postojanja++;
             }
 
         }
         if (provjera_postojanja == 0)
         {
-            fprintf(f, "%s %d.%d.%d %d:%d %s %d %d %d %d\n", dogadjaj.naziv, dogadjaj.datum.dan,
+            printf("Unesite ID dogadjaja: "); 
+            scanf("%s", dogadjaj.ID);
+            while (provjeraID(dogadjaj.ID)) 
+            {
+                printf("ID vec postoji, unesite novi ID:"); scanf("%s", dogadjaj.ID);
+            }
+            fprintf(f, "%s %d.%d.%d %d:%d %s %d %d %d %d %s\n", dogadjaj.naziv, dogadjaj.datum.dan,
                 dogadjaj.datum.mjesec, dogadjaj.datum.godina, dogadjaj.vrijeme.sat, dogadjaj.vrijeme.minut,
-                dogadjaj.mjesto, dogadjaj.cijena_ulaznice, dogadjaj.broj_mjesta, dogadjaj.broj_prodatih_ulaznica, dogadjaj.kupuje_na_ime);
+                dogadjaj.mjesto, dogadjaj.cijena_ulaznice, dogadjaj.broj_mjesta, dogadjaj.broj_prodatih_ulaznica, dogadjaj.kupuje_na_ime, dogadjaj.ID);
+        }
+        else {
+            printf("---Dogadjaj koji ste unijeli vec postoji!---");
+            return 0;
         }
 
         fclose(f);
@@ -135,6 +130,26 @@ int unosDogadjaja(DOGADJAJ dogadjaj) {
     printf("Dogadjaj uspjesno dodat!");
     return 1;
 }
+
+int provjeraID(char* ID) {
+    FILE* f = 0;
+    DOGADJAJ temp;
+    if (f = fopen("Dogadjaji.txt", "r")) {
+        while (fscanf(f, "%s %d.%d.%d %d:%d %s %d %d %d %d %s\n", temp.naziv, &temp.datum.dan, &temp.datum.mjesec,
+            &temp.datum.godina, &temp.vrijeme.sat, &temp.vrijeme.minut, temp.mjesto, &temp.cijena_ulaznice,
+            &temp.broj_mjesta, &temp.broj_prodatih_ulaznica, &temp.kupuje_na_ime, temp.ID) != EOF)
+        {
+            if (strcmp(temp.ID, dogadjaj.ID) == 0)
+            {
+                fclose(f);
+                return 1;
+            }
+        }
+        fclose(f);
+    }
+    return 0;
+}
+
 int validacijaNaziva(char* naziv)
 {
     FILE* f;

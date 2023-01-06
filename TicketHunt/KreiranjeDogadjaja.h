@@ -20,6 +20,7 @@ typedef struct dogadjaj {
 	char naziv[MAX];
 	struct Datum datum;
 	char mjesto[MAX];
+	char ID[MAX];
 	struct Vrijeme_odrzavanja vrijeme;
 	int cijena_ulaznice;
 	int broj_mjesta;
