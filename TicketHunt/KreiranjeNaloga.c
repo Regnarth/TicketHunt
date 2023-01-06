@@ -149,7 +149,6 @@ void unosKlijenta(KLIJENT* klijent) {
 	while (provjeraFormataSifre(klijent->sifra) == 0) {
 		printf("sifra:"); scanf("%s", klijent->sifra);
 	}
-	klijent->suspendovan = 0;
 }
 
 void unosAdministratora(ADMINISTRATOR* administrator) {
