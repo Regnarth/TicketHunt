@@ -109,18 +109,18 @@ int validacijaNaziva(char* naziv)
     if(f=fopen("Dogadjaji.txt", "r"))
     {
         int lineLength = 255;
-        char line[lineLength];
+        char line[255];
 
         while(fgets(line, lineLength, f)) {
 
             char delimiter[] = " ";
 
             char *prva_rijec = strtok(line, delimiter);
-            if(strcmp(prva_rijec,naziv)==0)
+            /*if(strcmp(prva_rijec,naziv)==0)
             {
                 printf("Dogadjaj sa datim imenom vec postoji!\n");
                 return 0;
-            }
+            }*/
 
         }
     }
