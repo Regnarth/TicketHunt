@@ -25,7 +25,7 @@ void aktivirajNalog() {
 		}
 		fclose(f);
 	}
-
+	invertuj(&nalog);
 	if (ukloniNalog(f, nalog))
 		printf("Nalog je uspjesno aktiviran.\n");
 
@@ -67,4 +67,15 @@ void brisi(NALOG** nalog) {
 	*nalog = pom->next;
 	free(pom);
 	}
+}
+
+void invertuj(NALOG** glava) {
+	NALOG* p1 = *glava, * p2 = 0, * p3;
+	while (p1) {
+		p3 = p1->next;
+		p1->next = p2;
+		p2 = p1;
+		p1 = p3;
+	}
+	*glava = p2;
 }
