@@ -20,7 +20,6 @@ int unosDogadjaja(DOGADJAJ dogadjaj) {
 	printf("Unesite opis dogadjaja:");
      gets(dogadjaj.opis_dogadjaja);
      char* naziv_datoteke;
-     printf("%s", naziv_datoteke);
      strcat(naziv_datoteke, dogadjaj.naziv);
      strcat(naziv_datoteke, ".txt");
 
@@ -110,7 +109,7 @@ int validacijaNaziva(char* naziv)
     if(f=fopen("Dogadjaji.txt", "r"))
     {
         int lineLength = 255;
-        char line[lineLength]; /* not ISO 90 compatible */
+        char line[lineLength];
 
         while(fgets(line, lineLength, f)) {
 
