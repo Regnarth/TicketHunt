@@ -12,11 +12,5 @@ typedef struct listaDogadjaja {
 	struct listaDogadjaja* next;
 } ListaDogadjaja;
 
-void dodajUListu(ListaDogadjaja**, DOGADJAJ*);
-//int provjeraUlaznica(char*);
-//int ponistiUlaznice(char*);
-int brisiDogadjaj(char*);
-void invertujListu(ListaDogadjaja**);
-int upisiDogadjaje(ListaDogadjaja*);
 
 #endif
