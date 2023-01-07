@@ -3,11 +3,12 @@
 
 void aktivirajDogadjaj()
 {
-    char imeDogadjaja[MAX_EVENT_NAME_LENGHT];
-    printf("Unesite ime dogadjaja koji zelite da aktivirate:\n");
-    gets(imeDogadjaja);
+    char IDDogadjaja[MAX_ID_LENGHT];
+    printf("Unesite ID dogadjaja koji zelite da aktivirate:\n");
+    scanf("%s", IDDogadjaja);
+    //gets(IDDogadjaja);
     FILE* fp;
-    while (provjeraAktivnostiDogadjaja(fp, imeDogadjaja) == 0)
+    while (provjeraAktivnostiDogadjaja(fp, IDDogadjaja) == 0)
     {
         printf("Dogadjaj nije blokiran.\n");
         return;
@@ -16,10 +17,10 @@ void aktivirajDogadjaj()
     EVENT* event = 0;
     if (fp = fopen("Blokirani.txt", "r"))
     {
-        char temp[MAX_EVENT_NAME_LENGHT];
-        while (fgets(temp, 50, fp))
+        char temp[MAX_ID_LENGHT];
+        while (fgets(temp, MAX_ID_LENGHT, fp))
         {
-            if (strcmp(temp, imeDogadjaja) != 0)
+            if (strcmp(temp, IDDogadjaja) != 0)
             {
                 dodaj(&event, temp);
             }
@@ -34,7 +35,7 @@ void aktivirajDogadjaj()
     brisi(&event);
 
 }
-void dodaj(EVENT** event, char* imeDogadjaja)
+void dodaj(EVENT** event, char* IDDogadjaja)
 {
     EVENT* novi = (EVENT*)malloc(sizeof(EVENT));
 
@@ -42,7 +43,7 @@ void dodaj(EVENT** event, char* imeDogadjaja)
     {
         return;
     }
-    strcpy(novi->imeDogadjaja, imeDogadjaja);
+    strcpy(novi->IDDogadjaja, IDDogadjaja);
 
     novi->next = *event;
     *event = novi;
@@ -54,7 +55,7 @@ int ukloniDogadjaj(FILE* fp, EVENT* event)
     {
         while (event != 0)
         {
-            fprintf(fp, "%s\n", event->imeDogadjaja);
+            fprintf(fp, "%s\n", event->IDDogadjaja);
             event = event->next;
         }
         fclose(fp);

@@ -2,31 +2,33 @@
 
 void blokirajDogadjaj()
 {
-    char imeDogadjaja[MAX_EVENT_NAME_LENGHT];
-    printf("Unesite ime dogadjaja koji zelite da blokirate:\n");
-    gets(imeDogadjaja);
+    char IDDogadjaja[MAX_ID_LENGHT];
+    printf("Unesite ID dogadjaja koji zelite da blokirate:\n");
+    scanf("%s", IDDogadjaja);
+    //gets(IDDogadjaja);
     FILE* fp;
-    while (provjeraAktivnostiDogadjaja(fp, imeDogadjaja) == 1)
+    while (provjeraAktivnostiDogadjaja(fp, IDDogadjaja) == 1)
     {
         printf("Dogadjaj je vec blokiran.\n");
         printf("Izaberite drugi događaj:\n");
-        gets(imeDogadjaja);
+        scanf("%s", IDDogadjaja);
+        //gets(IDDogadjaja);
     }
 
-    if (memorisiDogadjaj(fp, imeDogadjaja))
+    if (memorisiDogadjaj(fp, IDDogadjaja))
     {
         printf("Dogadjaj je uspjesno blokiran.\n");
     }
 }
 
-int provjeraAktivnostiDogadjaja(FILE* fp, char* imeDogadjaja)
+int provjeraAktivnostiDogadjaja(FILE* fp, char* IDDogadjaja)
 {
     if (fp = fopen("Blokirani.txt", "r"))
     {
-        char temp[MAX_EVENT_NAME_LENGHT];
-        while (fgets(temp, MAX_EVENT_NAME_LENGHT, fp))
+        char temp[MAX_ID_LENGHT];
+        while (fgets(temp, MAX_ID_LENGHT, fp))
         {
-            if (strcmp(imeDogadjaja, temp) == 0)
+            if (strcmp(IDDogadjaja, temp) == 0)
             {
                 fclose(fp);
                 return 1;
@@ -42,11 +44,11 @@ int provjeraAktivnostiDogadjaja(FILE* fp, char* imeDogadjaja)
     return 0;
 }
 
-int memorisiDogadjaj(FILE* fp, char* imeDogadjaja)
+int memorisiDogadjaj(FILE* fp, char* IDDogadjaja)
 {
     if (fp = fopen("Blokirani.txt", "a"))
     {
-        fprintf(fp, "%s\n", imeDogadjaja);
+        fprintf(fp, "%s\n", IDDogadjaja);
         fclose(fp);
         return 1;
     }
