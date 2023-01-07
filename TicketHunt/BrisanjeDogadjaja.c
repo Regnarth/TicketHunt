@@ -1,30 +1,31 @@
 #include "BrisanjeDogadjaja.h"
+#include "KreiranjeDogadjaja.c"
 
 void brisanjeDogadjaja() {
 
-	char imeDogadjaja[150];
-	printf("Unesite ime dogadjaja koji zelite da obrisete: ");
-    scanf("%s", imeDogadjaja);
-	while (validacijaNaziva(imeDogadjaja)) {
+	char IDDogadjaja[150];
+	printf("Unesite ID dogadjaja koji zelite da obrisete: ");
+    scanf("%s", IDDogadjaja);
+	while (!provjeraID(IDDogadjaja)) {
 		printf("Dogadjaj ne postoji. Izaberite ponovo.\n");
-        scanf("%s", imeDogadjaja);
+        scanf("%s", IDDogadjaja);
 	}
-	//if (provjeraUlaznica(imeDogadjaja)) {
-	//	ponistiUlaznice(imeDogadjaja);
+	//if (provjeraUlaznica(IDDogadjaja)) {
+	//	ponistiUlaznice(IDDogadjaja);
 	//}
 
-	if(brisiDogadjaj(imeDogadjaja)){
+	if(brisiDogadjaj(IDDogadjaja)){
 	printf("Dogadjaj uspjesno obrisan.\n");
     }
 }
 
-//int provjeraUlaznica(char* imeDogadjaja) {
+//int provjeraUlaznica(char* IDDogadjaja) {
 
 //}
-//int ponistiUlaznice(char* imeDogadjaja) {
+//int ponistiUlaznice(char* IDDogadjaja) {
 
 //}
-int brisiDogadjaj(char* imeDogadjaja) {
+int brisiDogadjaj(char* IDDogadjaja) {
 	
     FILE* fp;
     ListaDogadjaja* lista = 0;
@@ -32,10 +33,10 @@ int brisiDogadjaj(char* imeDogadjaja) {
     {
         DOGADJAJ temp;
 
-        while (fscanf(fp, "%s %d.%d.%d %d:%d %s %d %d %d %d\n", temp.naziv, &temp.datum.dan,
+        while (fscanf(fp, "%s %d.%d.%d %d:%d %s %d %d %d %d %s\n", temp.naziv, &temp.datum.dan,
             &temp.datum.mjesec, &temp.datum.godina, &temp.vrijeme.sat, &temp.vrijeme.minut, temp.mjesto,
-            &temp.cijena_ulaznice, &temp.broj_mjesta, &temp.broj_prodatih_ulaznica, &temp.kupuje_na_ime) == 11) {
-            if (strcmp(imeDogadjaja, temp.naziv) != 0) {
+            &temp.cijena_ulaznice, &temp.broj_mjesta, &temp.broj_prodatih_ulaznica, &temp.kupuje_na_ime, temp.ID) != EOF) {
+            if (strcmp(IDDogadjaja, temp.ID) != 0) {
                 dodajUListu(&lista, &temp);
             }
         }
@@ -68,6 +69,7 @@ void dodajUListu(ListaDogadjaja** lista, DOGADJAJ* temp) {
     novi->dogadjaj.broj_mjesta = temp->broj_mjesta;
     novi->dogadjaj.broj_prodatih_ulaznica = temp->broj_prodatih_ulaznica;
     novi->dogadjaj.kupuje_na_ime = temp->kupuje_na_ime;
+    strcpy(novi->dogadjaj.ID, temp->ID);
 
     novi->next = *lista;
     *lista = novi;
@@ -88,9 +90,9 @@ int upisiDogadjaje(ListaDogadjaja* lista) {
     FILE* f = 0;
     if (f = fopen("Dogadjaji.txt", "w")) {
         while (lista) {
-            fprintf(f, "%s %d.%d.%d %d:%d %s %d %d %d %d\n", lista->dogadjaj.naziv, lista->dogadjaj.datum.dan, lista->dogadjaj.datum.mjesec, lista->dogadjaj.datum.godina,
+            fprintf(f, "%s %d.%d.%d %d:%d %s %d %d %d %d %s\n", lista->dogadjaj.naziv, lista->dogadjaj.datum.dan, lista->dogadjaj.datum.mjesec, lista->dogadjaj.datum.godina,
                 lista->dogadjaj.vrijeme.sat, lista->dogadjaj.vrijeme.minut, lista->dogadjaj.mjesto, lista->dogadjaj.cijena_ulaznice, 
-                lista->dogadjaj.broj_mjesta, lista->dogadjaj.broj_prodatih_ulaznica, lista->dogadjaj.kupuje_na_ime);
+                lista->dogadjaj.broj_mjesta, lista->dogadjaj.broj_prodatih_ulaznica, lista->dogadjaj.kupuje_na_ime, lista->dogadjaj.ID);
 
             lista = lista->next;
         }
