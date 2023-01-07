@@ -1,4 +1,5 @@
 #include "BrisanjeDogadjaja.h"
+##include "KreiranjeDogadjaja.c"
 
 void brisanjeDogadjaja() {
 
