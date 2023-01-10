@@ -52,7 +52,9 @@ int brisiDogadjaj(char* IDDogadjaja) {
 
     if (!upisiDogadjaje(lista))
         return 0;
-
+	
+    brisi(&lista);
+    return 1;
 }
 
 void dodajUListu(ListaDogadjaja** lista, DOGADJAJ* temp) {
@@ -103,4 +105,12 @@ int upisiDogadjaje(ListaDogadjaja* lista) {
         printf("Neuspjesno brisanje.\n");
         return 0;
     }
+}
+void brisi(ListaDogadjajaG** lista) {
+
+	while(*lista){
+	ListaDogadjaja* pom = *lista;
+	*lista = pom->next;
+	free(pom);
+	}
 }
