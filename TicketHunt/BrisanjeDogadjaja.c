@@ -39,6 +39,13 @@ int brisiDogadjaj(char* IDDogadjaja) {
             if (strcmp(IDDogadjaja, temp.ID) != 0) {
                 dodajUListu(&lista, &temp);
             }
+		else{
+			strcat(temp.naziv, ".txt"); 
+			if(remove(temp.naziv) != 0){
+				fclose(fp);
+				return 0;
+			}
+		}
         }
         fclose(fp);
     }
