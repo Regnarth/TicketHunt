@@ -10,6 +10,7 @@ struct User {
     char prezime[MAX_USERNAME_LENGTH];
   char username[MAX_USERNAME_LENGTH];
   char password[MAX_PASSWORD_LENGTH];
+ int kredit;
 };
 typedef struct User USER;
 #endif
