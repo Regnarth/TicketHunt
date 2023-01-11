@@ -7,6 +7,11 @@
 #include <string.h>
 #include <stdlib.h>
 
+void aktivirajDogadjaj();
+void dodaj(EVENT** event, char* IDDogadjaja)
+int ukloniDogadjaj(FILE* fp, EVENT* event);
+void brisi(EVENT** event);
+
 typedef struct event {
 	char IDDogadjaja[MAX_ID_LENGHT];
 	struct event* next;

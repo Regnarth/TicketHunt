@@ -14,18 +14,20 @@ int unosDogadjaja() {
         }
 
     }
-    printf("Unesite mjesto odrzavanja:");
+    printf("Unesite mjesto odrzavanja: ");
+    getchar();
     gets(dogadjaj.mjesto);
+    //scanf("%s", dogadjaj.mjesto);
 
     printf("Unesite opis dogadjaja:");
+    //getchar();
     gets(dogadjaj.opis_dogadjaja);
-    char* naziv_datoteke;
-    strcat(naziv_datoteke, dogadjaj.naziv);
-    strcat(naziv_datoteke, ".txt");
+    char naziv_datoteke[150];
+    sprintf(naziv_datoteke, "%s.txt", dogadjaj.naziv);
 
-    if (f = fopen(naziv_datoteke, "a"))
+    if (f = fopen(naziv_datoteke, "w"))
     {
-        fprintf(f, "%s", dogadjaj.opis_dogadjaja);
+        //fprintf(f, "%s", dogadjaj.opis_dogadjaja);
         fclose(f);
     }
 
@@ -105,9 +107,9 @@ int unosDogadjaja() {
         }
         if (provjera_postojanja == 0)
         {
-            printf("Unesite ID dogadjaja: "); 
+            printf("Unesite ID dogadjaja: ");
             scanf("%s", dogadjaj.ID);
-            while (provjeraID(dogadjaj.ID)) 
+            while (provjeraID(dogadjaj.ID))
             {
                 printf("ID vec postoji, unesite novi ID:"); scanf("%s", dogadjaj.ID);
             }
@@ -127,7 +129,7 @@ int unosDogadjaja() {
         printf("Neuspjesno otvaranje datoteke.");
         return 0;
     }
-    printf("Dogadjaj uspjesno dodat!");
+    printf("Dogadjaj uspjesno dodat!\n  ");
     return 1;
 }
 
@@ -139,7 +141,7 @@ int provjeraID(char* ID) {
             &temp.datum.godina, &temp.vrijeme.sat, &temp.vrijeme.minut, temp.mjesto, &temp.cijena_ulaznice,
             &temp.broj_mjesta, &temp.broj_prodatih_ulaznica, &temp.kupuje_na_ime, temp.ID) != EOF)
         {
-            if (strcmp(temp.ID, dogadjaj.ID) == 0)
+            if (strcmp(temp.ID, ID) == 0)
             {
                 fclose(f);
                 return 1;
