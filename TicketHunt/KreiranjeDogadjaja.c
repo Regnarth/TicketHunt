@@ -96,7 +96,7 @@ int unosDogadjaja() {
         {
             if ((strcmp(temp.naziv, dogadjaj.naziv) == 0) && (strcmp(temp.mjesto, dogadjaj.mjesto) == 0) &&
                 (temp.datum.godina == dogadjaj.datum.godina) && (temp.datum.mjesec == dogadjaj.datum.mjesec) &&
-                (temp.datum.dan == dogadjaj.datum.dan) && (temp.datum.sat == dogadjaj.datum.sat) && (temp.datum.sat == dogadjaj.datum.minut))
+                (temp.datum.dan == dogadjaj.datum.dan) && (temp.vrijeme.sat == dogadjaj.vrijeme.sat) && (temp.vrijeme.minut == dogadjaj.vrijeme.minut))
             {
 
                 provjera_postojanja++;
