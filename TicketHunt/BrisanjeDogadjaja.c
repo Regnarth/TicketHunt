@@ -39,6 +39,13 @@ int brisiDogadjaj(char* IDDogadjaja) {
             if (strcmp(IDDogadjaja, temp.ID) != 0) {
                 dodajUListu(&lista, &temp);
             }
+		else{
+			strcat(temp.naziv, ".txt"); 
+			if(remove(temp.naziv) != 0){
+				fclose(fp);
+				return 0;
+			}
+		}
         }
         fclose(fp);
     }
@@ -52,7 +59,9 @@ int brisiDogadjaj(char* IDDogadjaja) {
 
     if (!upisiDogadjaje(lista))
         return 0;
-
+	
+    brisi(&lista);
+    return 1;
 }
 
 void dodajUListu(ListaDogadjaja** lista, DOGADJAJ* temp) {
@@ -103,4 +112,12 @@ int upisiDogadjaje(ListaDogadjaja* lista) {
         printf("Neuspjesno brisanje.\n");
         return 0;
     }
+}
+void brisi(ListaDogadjajaG** lista) {
+
+	while(*lista){
+	ListaDogadjaja* pom = *lista;
+	*lista = pom->next;
+	free(pom);
+	}
 }
