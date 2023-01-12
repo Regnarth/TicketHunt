@@ -3,17 +3,8 @@
 int unosDogadjaja() {
     DOGADJAJ dogadjaj;
     FILE* f;
-    int naziv_validan = 0;
-    while (naziv_validan == 0)
-    {
-        printf("Unesite naziv dogadjaja:"); scanf("%s", dogadjaj.naziv);
-
-        if (validacijaNaziva(dogadjaj.naziv) == 1)
-        {
-            naziv_validan = 1;
-        }
-
-    }
+    
+    printf("Unesite naziv dogadjaja:"); scanf("%s", dogadjaj.naziv);
     printf("Unesite mjesto odrzavanja: ");
     getchar();
     gets(dogadjaj.mjesto);
@@ -152,33 +143,6 @@ int provjeraID(char* ID) {
     return 0;
 }
 
-int validacijaNaziva(char* naziv)
-{
-    FILE* f;
-    if (f = fopen("Dogadjaji.txt", "r"))
-    {
-        int lineLength = 255;
-        char line[255];
-
-        while (fgets(line, lineLength, f)) {
-
-            char delimiter[] = " ";
-
-            char* prva_rijec = strtok(line, delimiter);
-            /*if(strcmp(prva_rijec,naziv)==0)
-            {
-                printf("Dogadjaj sa datim imenom vec postoji!\n");
-                return 0;
-            }*/
-
-        }
-    }
-    else {
-        printf("Neuspjesno otvaranje datoteke.");
-        return 0;
-    }
-    return 1;
-}
 int validacijaVremena(int sat, int minut)
 {
     int vrijeme_validno = 1;
