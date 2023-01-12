@@ -51,7 +51,7 @@ int ponistiUlaznice(char* IDDogadjaja) {
 			}
 		}
 
-		if (!upisiUlaznice(ulaznice, sifra, ime)) {
+		if (!upisiUlaznice(ulaznice)) {
 			fclose(fp);
 			return 0;
 		}
@@ -90,13 +90,13 @@ void dodajUlaznicu(ULAZNICE** ulaznice, char* sifra, DOGADJAJ* temp, char* ime) 
 	}
 }
 
-int upisiUlaznice(ULAZNICE* lista, char* sifra, char* ime) {
+int upisiUlaznice(ULAZNICE* lista) {
 	FILE* f = 0;
 	if (f = fopen("Ulaznice.txt", "w")) {
 		while (lista) {
-			fprintf(f, "%s %s %s %d.%d.%d %d:%d %s %d %d %d %d %s\n", sifra, lista->dogadjaj.ID, lista->dogadjaj.naziv, lista->dogadjaj.datum.dan, lista->dogadjaj.datum.mjesec, lista->dogadjaj.datum.godina,
+			fprintf(f, "%s %s %s %d.%d.%d %d:%d %s %d %d %d %s\n", lista->sifra, lista->dogadjaj.ID, lista->dogadjaj.naziv, lista->dogadjaj.datum.dan, lista->dogadjaj.datum.mjesec, lista->dogadjaj.datum.godina,
 				lista->dogadjaj.vrijeme.sat, lista->dogadjaj.vrijeme.minut, lista->dogadjaj.mjesto, lista->dogadjaj.cijena_ulaznice,
-				lista->dogadjaj.broj_mjesta, lista->dogadjaj.broj_prodatih_ulaznica, ime);
+				lista->dogadjaj.broj_mjesta, lista->dogadjaj.broj_prodatih_ulaznica, lista->ime);
 
 			lista = lista->next;
 		}
@@ -205,7 +205,7 @@ int upisiDogadjaje(ListaDogadjaja* lista) {
         return 0;
     }
 }
-void brisi(ListaDogadjajaG** lista) {
+void brisi(ListaDogadjaja** lista) {
 
 	while(*lista){
 	ListaDogadjaja* pom = *lista;
