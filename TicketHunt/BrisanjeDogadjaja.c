@@ -10,21 +10,113 @@ void brisanjeDogadjaja() {
 		printf("Dogadjaj ne postoji. Izaberite ponovo.\n");
         scanf("%s", IDDogadjaja);
 	}
-	//if (provjeraUlaznica(IDDogadjaja)) {
-	//	ponistiUlaznice(IDDogadjaja);
-	//}
+	if (provjeraUlaznica(IDDogadjaja)) {
+		ponistiUlaznice(IDDogadjaja);
+	}
 
 	if(brisiDogadjaj(IDDogadjaja)){
 	printf("Dogadjaj uspjesno obrisan.\n");
     }
 }
 
-//int provjeraUlaznica(char* IDDogadjaja) {
+int provjeraUlaznica(char* IDDogadjaja) {
+	FILE* fp;
+	if (fp = fopen("Ulaznice.txt", "r")) {
+		char izraz[250];
+		if (fgets(izraz, 250, fp) == NULL) {
+			fclose(fp);
+			return 0;
+		}
+		fclose(fp);
+	}
+	else return 0;
+	return 1;
+}
 
-//}
-//int ponistiUlaznice(char* IDDogadjaja) {
+int ponistiUlaznice(char* IDDogadjaja) {
+	FILE* fp;
+	if (fp = fopen("Ulaznice.txt", "r"))
+	{
+		ULAZNICE* ulaznice = 0;
+		char ime[20];
+		char sifra[20];
+		DOGADJAJ pom;
+		while (fscanf(fp, "%s %s %s %d.%d.%d %d:%d %s %d %d %d %s \n", sifra, pom.ID, pom.naziv, &pom.datum.dan,
+			&pom.datum.mjesec, &pom.datum.godina, &pom.vrijeme.sat, &pom.vrijeme.minut, pom.mjesto,
+			&pom.cijena_ulaznice, &pom.broj_mjesta, &pom.broj_prodatih_ulaznica, ime) != EOF)
+		{
+			if (strcmp(IDDogadjaja, pom.ID) != 0)
+			{
+				dodajUlaznicu(&ulaznice, sifra, &pom, ime);
+			}
+		}
 
-//}
+		if (!upisiUlaznice(ulaznice, sifra, ime)) {
+			fclose(fp);
+			return 0;
+		}
+
+		brisiUlaznice(&ulaznice);
+		fclose(fp);
+		return 1;
+		
+	}
+	else return 0;
+
+}
+
+void dodajUlaznicu(ULAZNICE** ulaznice, char* sifra, DOGADJAJ* temp, char* ime) {
+
+	ULAZNICE* pom, * nova = (ULAZNICE*)malloc(sizeof(ULAZNICE));
+
+	if (!nova) return;
+
+	strcpy(nova->sifra, sifra);
+	strcpy(nova->dogadjaj.ID, temp->ID);
+	strcpy(nova->dogadjaj.naziv, temp->naziv);
+	nova->dogadjaj.datum = temp->datum;
+	nova->dogadjaj.vrijeme = temp->vrijeme;
+	strcpy(nova->dogadjaj.mjesto, temp->mjesto);
+	nova->dogadjaj.cijena_ulaznice = temp->cijena_ulaznice;
+	nova->dogadjaj.broj_mjesta = temp->broj_mjesta;
+	nova->dogadjaj.broj_prodatih_ulaznica = temp->broj_prodatih_ulaznica;
+	strcpy(nova->ime, ime);
+	nova->next = 0;
+
+	if (*ulaznice == 0) *ulaznice = nova;
+	else {
+		for (pom = *ulaznice; pom->next; pom = pom->next);
+		pom->next = nova;
+	}
+}
+
+int upisiUlaznice(ULAZNICE* lista, char* sifra, char* ime) {
+	FILE* f = 0;
+	if (f = fopen("Ulaznice.txt", "w")) {
+		while (lista) {
+			fprintf(f, "%s %s %s %d.%d.%d %d:%d %s %d %d %d %d %s\n", sifra, lista->dogadjaj.ID, lista->dogadjaj.naziv, lista->dogadjaj.datum.dan, lista->dogadjaj.datum.mjesec, lista->dogadjaj.datum.godina,
+				lista->dogadjaj.vrijeme.sat, lista->dogadjaj.vrijeme.minut, lista->dogadjaj.mjesto, lista->dogadjaj.cijena_ulaznice,
+				lista->dogadjaj.broj_mjesta, lista->dogadjaj.broj_prodatih_ulaznica, ime);
+
+			lista = lista->next;
+		}
+		fclose(f);
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
+
+void brisiUlaznice(ULAZNICE** ulaznice) {
+
+	while (*ulaznice) {
+		ULAZNICE* pom = *ulaznice;
+		*ulaznice = pom->next;
+		free(pom);
+	}
+}
+
 int brisiDogadjaj(char* IDDogadjaja) {
 	
     FILE* fp;
