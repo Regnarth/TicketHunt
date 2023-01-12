@@ -65,7 +65,7 @@ void prviAdministrator() {
 		return;
 	}
 	if (f = fopen("Prijavljeni korisnici.txt", "a")) {
-		fprintf(f, "%s %s %s %s %d\n", administrator.ime, administrator.prezime, administrator.korisnickoIme, administrator.sifra, administrator.brojPrijava);
+		fprintf(f, "%s %s %s %s %d %d\n", administrator.ime, administrator.prezime, administrator.korisnickoIme, administrator.sifra, administrator.brojPrijava, 0);
 		fclose(f);
 	}
 	else {
