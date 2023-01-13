@@ -15,4 +15,10 @@ typedef struct cvor{
 	struct cvor *sljedeci;
 } CVOR;
 void pregledListeDogadjaja(char *file);
+void dodaj(CVOR** dogadjaj, char* naziv);
+CVOR* trazi(CVOR *dogadjaj, char *naziv);
+void pisi(CVOR *dogadjaj);
+void brisi_listu(CVOR **dogadjaj);
+void pregledListeDogadjaja(char *file);
+
 #endif // PREGLED_LISTE_DOGADJAJA_H

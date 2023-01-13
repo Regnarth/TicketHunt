@@ -6,4 +6,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+void blokirajDogadjaj();
+int provjeraAktivnostiDogadjaja(FILE* fp, char* IDDogadjaja);
+int memorisiDogadjaj(FILE* fp, char* IDDogadjaja);
+
 #endif

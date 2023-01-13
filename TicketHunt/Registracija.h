@@ -13,4 +13,8 @@ struct User {
  int kredit;
 };
 typedef struct User USER;
+
+void register_user();
+int provjeriUsername(char* username);
+
 #endif

@@ -12,4 +12,10 @@ typedef  struct account {
     struct account* next;
 } ACCOUNT;
 
+void obrisiNalog();
+void dodaj(ACCOUNT** acc, USER* pom);
+void invertuj(ACCOUNT** glava);
+int ukloniNalog(FILE* f, ACCOUNT* nalog);
+void brisi(ACCOUNT** nalog);
+
 #endif

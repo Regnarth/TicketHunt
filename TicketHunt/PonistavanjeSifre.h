@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+void ponistiSifru();
 int provjeraPostojanja(FILE* f, char* korisnickoIme);
 int memorisiSifru(FILE* f, char* korisnickoIme);
+
 #endif

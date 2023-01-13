@@ -29,6 +29,13 @@ typedef struct dogadjaj {
 	char opis_dogadjaja[MAX];
 } DOGADJAJ;
 
+int unosDogadjaja();
+int provjeraID(char* ID);
+int validacijaVremena(int sat, int minut);
+int validacijaCijene(int cijena);
+int validacijaBrojaMjesta(int broj_mjesta);
+int validacijaKupovine(int kupuje_na_ime);
+int validacijaDatuma(int dan, int mjesec, int godina);
 
 
 #endif

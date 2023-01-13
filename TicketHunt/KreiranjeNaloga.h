@@ -21,5 +21,15 @@ typedef struct administrator {
 	char sifra[MAX];
 	int brojPrijava;
 } ADMINISTRATOR;
+
+void kreirajNalog();
+int dodajKlijenta(FILE* f, KLIJENT* klijent);
+int dodajAdministratora(FILE* f, ADMINISTRATOR* administrator);
+int traziKlijenta(FILE* f, char* korisnickoIme);
+int traziAdministratora(FILE* f, char* korisnickoIme);
+int provjeraFormataSifre(char* sifra);
+void unosKlijenta(KLIJENT* klijent);
+void unosAdministratora(ADMINISTRATOR* administrator);
+
 #endif
 

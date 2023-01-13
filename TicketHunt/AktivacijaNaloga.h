@@ -10,4 +10,11 @@ typedef struct nalog{
 	char korisnickoIme[MAX];
 	struct nalog* next;
 } NALOG;
+
+void aktivirajNalog();
+void dodaj(NALOG** nalog, char* korisnickoIme);
+int ukloniNalog(FILE* f, NALOG* nalog);
+void brisi(NALOG** nalog);
+void invertuj(NALOG** glava);
+
 #endif
