@@ -36,6 +36,7 @@ void ponistavanjeUlaznice()
     remove(filename);
     rename("replica.txt", filename);
     remove(pomocnifajl);
+    printf("Ulaznica je uspjesno ponistena!");
 }
 
 int validacijaSifre(char* sifra)
