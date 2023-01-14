@@ -11,6 +11,12 @@ typedef struct listaDogadjaja {
 	DOGADJAJ dogadjaj;
 	struct listaDogadjaja* next;
 } ListaDogadjaja;
+typedef struct ulaznice {
+	char sifra[20];
+	DOGADJAJ dogadjaj;
+	char ime[20];
+	struct ulaznice* next;
+}ULAZNICE;
 
 void brisanjeDogadjaja();
 int provjeraUlaznica(char* IDDogadjaja);
