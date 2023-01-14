@@ -1,4 +1,3 @@
-#include "OtkazivanjeKupljeneUlaznice.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -74,9 +73,4 @@ void obrisiLiniju(int broj_linije){
 
     printf("Ulaznica je uspjesno otkazana.");
 
-}
-
-int main()
-{
-    otkazivanjeKupljeneUlaznice("anja");
 }
