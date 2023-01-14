@@ -22,8 +22,10 @@ void PregledDogadjaja()
                     strcpy(pomocno_ime, temp.naziv);
                     strcat(pomocno_ime,ekstenzija);
                     char red[200];
+
                 if (dat=fopen(pomocno_ime,"r") != NULL)
                 {
+                    printf("Opis dogadjaja:\n");
                     while ( fgets(red,200,dat) != NULL)
                     {
                         printf("%s",red);
