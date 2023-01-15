@@ -1,5 +1,6 @@
 #pragma once
 #include "SuspendovanjeNaloga.h"
+#include "KreiranjeNaloga.h"
 
 void suspendujNalog() {
 
@@ -11,6 +12,11 @@ void suspendujNalog() {
 		printf("Nalog je vec suspendovan.\n");
 		printf("Izaberite drugi nalog.\n");
 		scanf("%s", korisnickoIme);
+	}
+	
+	if(!traziKlijenta(f, korisnickoIme) || !provjeriKorisnika(f, korisnickoIme)){
+		printf("Neuspjesno suspendovanje. Dozvoljeno suspendovanje samo korisnickih i klijenskih naloga.\n");
+		return;
 	}
 
 	if (memorisiNalog(f, korisnickoIme))
