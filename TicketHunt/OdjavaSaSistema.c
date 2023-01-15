@@ -118,8 +118,3 @@ int validacijaOdjave(int odgovor)
     else
         return 0;
 }
-int main()
-{
-    odjavaSaSistema("tamara");
-    return 0;
-}
