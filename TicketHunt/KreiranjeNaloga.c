@@ -1,5 +1,5 @@
 #include "KreiranjeNaloga.h"
-#include "Registracija.c"
+#include "Registracija.h"
 
 void kreirajNalog() {
 
@@ -37,9 +37,11 @@ void kreirajNalog() {
 int dodajKlijenta(FILE* f, KLIJENT* klijent) {
 
 	while (traziKlijenta(f, klijent->korisnickoIme)) {
+		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", klijent->korisnickoIme);
 	}
 	while (traziAdministratora(f, klijent->korisnickoIme)) {
+		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", klijent->korisnickoIme);
 	}
 	while (provjeriUsername(klijent->korisnickoIme)){
