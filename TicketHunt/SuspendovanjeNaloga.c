@@ -14,7 +14,7 @@ void suspendujNalog() {
 		scanf("%s", korisnickoIme);
 	}
 	
-	if(!traziKlijenta(f, korisnickoIme) || !provjeriKorisnika(f, korisnickoIme)){
+	if(!traziKlijenta(f, korisnickoIme) || !provjeriUsername(korisnickoIme)){
 		printf("Neuspjesno suspendovanje. Dozvoljeno suspendovanje samo korisnickih i klijenskih naloga.\n");
 		return;
 	}
