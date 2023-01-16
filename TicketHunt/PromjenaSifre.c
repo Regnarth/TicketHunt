@@ -143,13 +143,12 @@ while(fscanf(f,"%s %s %s %s",niz[k].ime,niz[k].prezime,niz[k].korisnickoIme,niz[
         free(niz);
        }
 }
-void mijenjajSifru()
+void mijenjajSifru(USER *user)
 {
-    int v=birajVrstuNaloga();
-    if(v==1)
+    if (user->vrstaNaloga == 1)
         {if(promjenaSifre("Administratori.txt"))printf("Sifra uspjesno promjenjena");}
-    else if(v==2)
+    else if (user->vrstaNaloga == 2)
     {if(promjenaSifre("Klijenti.txt"))printf("Sifra uspjesno promjenjena");}
-    else if(v==3)
+    else if (user->vrstaNaloga == 3)
     {if(promjenaSifre("Korisnici.txt"))printf("Sifra uspjesno promjenjena");}
 }
