@@ -165,24 +165,28 @@ int provjeraRasprodanosti()
     return 0;
 }
 
-void memorisanjeUlaznice(DOGADJAJ* pom,USER* korisnik,char* ime)
-{
+void memorisanjeUlaznice(DOGADJAJ* pom,char* ime)
+{   static int sifra=0;
     FILE* fp;
     if (fp = fopen("Ulaznice.txt", "w"))
     {
         if(pom->kupuje_na_ime==1)
         {
-            fprintf(fp, "%s %d.%d.%d %d:%d %s %d %d %d %s \n", pom->naziv, pom->datum.dan,
+            fprintf(fp, "%s %s %s %d.%d.%d %d:%d %s %d %d %d %s \n",sifra,pom->ID, pom->naziv, pom->datum.dan,
                     pom->datum.mjesec, pom->datum.godina, pom->vrijeme.sat, pom->vrijeme.minut, pom->mjesto,
                     pom->cijena_ulaznice, pom->broj_mjesta, pom->broj_prodatih_ulaznica, ime);
-            {
-
-            }
         }
-        else fprintf(fp, "%s %d.%d.%d %d:%d %s %d %d %d %s \n", pom->naziv, pom->datum.dan,
+        else fprintf(fp, "%s %s %s %d.%d.%d %d:%d %s %d %d %d %s \n",sifra, pom->ID, pom->naziv, pom->datum.dan,
                          pom->datum.mjesec, pom->datum.godina, pom->vrijeme.sat, pom->vrijeme.minut, pom->mjesto,
                          pom->cijena_ulaznice, pom->broj_mjesta, pom->broj_prodatih_ulaznica, "Bez Imena" );
         fclose(fp);
     }
-
+    if(fp=fopen("SifraKorisnicko.txt","w")){
+        if(pom->kupuje_na_ime==1){
+            fprintf(fp,"%s %s \n",sifra, ime);
+            else fprintf(fp"%s %s",sifra, "Bez imena");
+        }
+        fclose(fp);
+    }
+   sifra++;
 }
