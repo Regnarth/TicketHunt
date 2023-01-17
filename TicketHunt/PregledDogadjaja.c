@@ -13,7 +13,7 @@ void PregledDogadjaja()
                  &temp.datum.mjesec, &temp.datum.godina, &temp.vrijeme.sat, &temp.vrijeme.minut, temp.mjesto,
                  &temp.cijena_ulaznice, &temp.broj_mjesta, &temp.broj_prodatih_ulaznica, &temp.kupuje_na_ime, temp.ID)   !=  EOF )
             {
-                printf("%s %d.%d.%d %d:%d %s %d %d %d %d %s\n", temp.naziv, temp.datum.dan,
+                printf("Naziv dogadjaja:%s\n Vrijeme odrzavanja: %d.%d.%d %d:%d\n Mjesto: %s\n Cijena ulaznice:%d\n Broj mjesta: %d\n Broj prodatih ulaznica: %d\n Kupuje na ime: %d\n  ID:%s\n", temp.naziv, temp.datum.dan,
                     temp.datum.mjesec, temp.datum.godina, temp.vrijeme.sat, temp.vrijeme.minut, temp.mjesto,
                     temp.cijena_ulaznice, temp.broj_mjesta, temp.broj_prodatih_ulaznica, temp.kupuje_na_ime, temp.ID);
                     
