@@ -1,4 +1,5 @@
 #include "PonistavanjeUlaznice.h"
+#include "OtkazivanjeKupljeneUlaznice.c"
 
 void ponistavanjeUlaznice()
 {
@@ -14,7 +15,6 @@ void ponistavanjeUlaznice()
             sifra_validna = 1;
         }
     }
-
     int line_number=0;
     FILE* fptr1 = fopen("Ulaznice.txt","r");
     FILE* fptr2 = fopen("replica.txt", "w");
@@ -36,7 +36,8 @@ void ponistavanjeUlaznice()
     remove(filename);
     rename("replica.txt", filename);
     remove(pomocnifajl);
-    printf("Ulaznica je uspjesno ponistena!");
+    obrisiLiniju(broj_linije);
+    printf("Ulaznica je uspjesno ponistena! ");
 }
 
 int validacijaSifre(char* sifra)
@@ -75,4 +76,3 @@ int validacijaSifre(char* sifra)
     }
     return 1;
 }
-
