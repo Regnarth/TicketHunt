@@ -184,7 +184,7 @@ void memorisanjeUlaznice(DOGADJAJ* pom,char* ime)
     if(fp=fopen("SifraKorisnicko.txt","w")){
         if(pom->kupuje_na_ime==1){
             fprintf(fp,"%s %s \n",sifra, ime);
-            else fprintf(fp"%s %s",sifra, "Bez imena");
+            else fprintf(fp"%s %s \n",sifra, "Bez imena");
         }
         fclose(fp);
     }
