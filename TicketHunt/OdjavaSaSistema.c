@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "PrijavljeniKorisnici.c"
-void odjavaSaSistema(char* username)
+#include "Prijava.h"
+#include "Prijava.c"
+void odjavaSaSistema(PRIJAVLJEN* prijavljen)
 {
     char* linija_za_izmjenu;
     FILE* f;
@@ -17,7 +18,7 @@ void odjavaSaSistema(char* username)
             odgovor_validan = 1;
         }
     }
-    if(f=fopen("Prijavljeni.txt", "r"))
+    if(f=fopen("Prijavljeni korisnici.txt", "r"))
     {
         int lineLength = 255;
         char line[lineLength];
@@ -27,8 +28,8 @@ void odjavaSaSistema(char* username)
         ukupan_br_linija++;
         char* pch;
         pch = strtok (line," ");
-        char* korisnickoIme = pch;
-        if(strcmp(korisnickoIme,username)==0)
+        char* username = pch;
+        if(strcmp(username,prijavljen->korisnickoIme)==0)
         {
             broj_linije=ukupan_br_linija;
         }
@@ -42,7 +43,7 @@ void izmjenaLinije(int broj_linije)
 {
     FILE* f;
     char* linija_za_izmjenu="";
-    if(f=fopen("Prijavljeni.txt", "r"))
+    if(f=fopen("Prijavljeni korisnici.txt", "r"))
     {
         int lineLength = 255;
         char line[lineLength];
@@ -79,6 +80,7 @@ void izmjenaLinije(int broj_linije)
                 strcat(nova_linija, "\n");
                 fclose(f);
                 izmjena(broj_linije,nova_linija);
+                printf("Uspjesno ste se odjavili! ");
             }
         }
     }
@@ -90,7 +92,7 @@ void izmjena(int broj_linije, char* nova_linija)
     char line[1000];
     FILE* f1;
     FILE* f2;
-    if(f1 = fopen("Prijavljeni.txt", "r"))
+    if(f1 = fopen("Prijavljeni korisnici.txt", "r"))
        {
        if(f2 = fopen("replace.tmp", "w"))
     {
@@ -105,8 +107,8 @@ void izmjena(int broj_linije, char* nova_linija)
     }
     fclose(f1);
     fclose(f2);
-    remove("Prijavljeni.txt");
-    rename("replace.tmp", "Prijavljeni.txt");
+    remove("Prijavljeni korisnici.txt");
+    rename("replace.tmp", "Prijavljeni korisnici.txt");
     return 0;
     }
     }
@@ -118,3 +120,5 @@ int validacijaOdjave(int odgovor)
     else
         return 0;
 }
+
+
