@@ -168,7 +168,7 @@ int provjeraRasprodanosti()
 void memorisanjeUlaznice(DOGADJAJ* pom,char* ime)
 {   static int sifra=0;
     FILE* fp;
-    if (fp = fopen("Ulaznice.txt", "w"))
+    if (fp = fopen("Ulaznice.txt", "a"))
     {
         if(pom->kupuje_na_ime==1)
         {
@@ -181,7 +181,7 @@ void memorisanjeUlaznice(DOGADJAJ* pom,char* ime)
                          pom->cijena_ulaznice, pom->broj_mjesta, pom->broj_prodatih_ulaznica, "Bez Imena" );
         fclose(fp);
     }
-    if(fp=fopen("SifraKorisnicko.txt","w")){
+    if(fp=fopen("SifraKorisnicko.txt","a")){
         if(pom->kupuje_na_ime==1){
             fprintf(fp,"%s %s \n",sifra, ime);
             else fprintf(fp"%s %s \n",sifra, "Bez imena");
