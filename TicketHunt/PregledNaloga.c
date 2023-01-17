@@ -19,4 +19,11 @@ if(fp=fopen("Administratori.txt","r")){
     }
     fclose(fp);
 }
+    if(fp=fopen("Korisnici.txt","r")){
+    USER pom;
+    while(fscanf(fp,"%s %s %s %s",pom.ime,pom.prezime,pom.username,pom.password)!=EOF){
+        printf("%s %s %s %s\n",pom.ime,pom.prezime,pom.username,pom.password);
+    }
+    fclose(fp);
+}
 }
