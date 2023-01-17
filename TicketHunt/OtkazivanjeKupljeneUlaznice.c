@@ -1,13 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "KupovinaUlaznice.c"
-#include "KupovinaUlaznice.h"
-#include "Prijava.h"
-#include "Prijava.c"
-#include "Registracija.h"
+//#include "KupovinaUlaznice.c"
+//#include "KupovinaUlaznice.h"
 
-void otkazivanjeKupljeneUlaznice(USER* user)
+void otkazivanjeKupljeneUlaznice(char* korisnickoIme)
 {
     FILE* f;
     char sifra_ulaznice[255];
@@ -30,8 +27,8 @@ void otkazivanjeKupljeneUlaznice(USER* user)
         if(strcmp(sifra,sifra_ulaznice)==0)
         {
             pch = strtok (NULL, " ");
-            char* korisnickoime = pch;
-            if(strcmp(korisnickoime, user->username)==0)
+            char* username = pch;
+            if(strcmp(username, korisnickoIme)==0)
             {
                 sifra_validna=1;
                 broj_linije = ukupan_broj_linija;
