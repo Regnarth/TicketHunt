@@ -90,7 +90,7 @@ int nulirajBrojPrijava(char* korIme)
 		if (f1 = fopen("pom.txt", "w")) {
 			while (fscanf(f, "%s %s %d %d", p.korisnickoIme, p.sifra, &p.brPrijava, &p.odjavljen) == 4) {
 				if (strcmp(korIme, p.korisnickoIme) == 0) {
-					fprintf(f1, "%s %s %d %d", p.korisnickoIme, p.sifra,0, p.odjavljen);
+					fprintf(f1, "%s %s %d %d", p.korisnickoIme, p.sifra,1, p.odjavljen);
 				}
 				else {
 					fprintf(f1, "%s %s %d %d", p.korisnickoIme, p.sifra, p.brPrijava, p.odjavljen);
