@@ -25,10 +25,14 @@ void aktivirajNalog() {
 		}
 		fclose(f);
 	}
+	else{
+		printf("Neuspjesna aktivacija.\n");
+		return;
+	}
 	invertuj(&nalog);
 	if (ukloniNalog(f, nalog))
 		printf("Nalog je uspjesno aktiviran.\n");
-
+	
 	brisi(&nalog);
 }
 

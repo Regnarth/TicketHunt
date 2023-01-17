@@ -43,5 +43,21 @@ int provjeriUsername(char* username)
         }
         fclose(fp);
     }
+     if(fp=fopen("Administratori.txt","r"))
+    {
+        while(fscanf(fp,"%s %s %s %s",pom.ime,pom.prezime,pom.username,pom.password)!=EOF)
+        {
+            if(strcmp(username,pom.username)==0)return 1;
+        }
+        fclose(fp);
+    }
+     if(fp=fopen("Klijenti.txt","r"))
+    {
+        while(fscanf(fp,"%s %s %s %s",pom.ime,pom.prezime,pom.username,pom.password)!=EOF)
+        {
+            if(strcmp(username,pom.username)==0)return 1;
+        }
+        fclose(fp);
+    }
     return 0;
 }

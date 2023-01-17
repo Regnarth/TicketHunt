@@ -1,5 +1,5 @@
 #include "KreiranjeNaloga.h"
-#include "Registracija.c"
+#include "Registracija.h"
 
 void kreirajNalog() {
 
@@ -11,7 +11,7 @@ void kreirajNalog() {
 
 	FILE* f = 0;
 
-	if (strcmp(vrstaNaloga, "klijentski") == 0) {
+	if (stricmp(vrstaNaloga, "klijentski") == 0) {
 
 		KLIJENT klijent;
 
@@ -21,7 +21,7 @@ void kreirajNalog() {
 			printf("Nalog je uspjesno kreiran.\n");
 	}
 
-	else {
+	else if (stricmp(vrstaNaloga, "administratorski") == 0) {
 
 		ADMINISTRATOR administrator;
 
@@ -30,14 +30,18 @@ void kreirajNalog() {
 		if (dodajAdministratora(f, &administrator))
 			printf("Nalog je uspjesno kreiran.\n");
 	}
+	
+	else printf("Neispravna vrsta naloga.\n");
 }
 
 int dodajKlijenta(FILE* f, KLIJENT* klijent) {
 
 	while (traziKlijenta(f, klijent->korisnickoIme)) {
+		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", klijent->korisnickoIme);
 	}
 	while (traziAdministratora(f, klijent->korisnickoIme)) {
+		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", klijent->korisnickoIme);
 	}
 	while (provjeriUsername(klijent->korisnickoIme)){
@@ -62,9 +66,11 @@ int dodajKlijenta(FILE* f, KLIJENT* klijent) {
 int dodajAdministratora(FILE* f, ADMINISTRATOR* administrator) {
 
 	while (traziAdministratora(f, administrator->korisnickoIme)) {
+		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", administrator->korisnickoIme);
 	}
 	while (traziKlijenta(f, administrator->korisnickoIme)) {
+		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", administrator->korisnickoIme);
 	}
 	while (provjeriUsername(administrator->korisnickoIme)){
@@ -90,7 +96,6 @@ int traziKlijenta(FILE* f, char* korisnickoIme) {
 	if (f = fopen("Klijenti.txt", "r")) {
 		while (fscanf(f, "%s %s %s %s", klijent.ime, klijent.prezime, klijent.korisnickoIme, klijent.sifra) == 4) {
 			if (strcmp(klijent.korisnickoIme, korisnickoIme) == 0) {
-				printf("Korisnicko ime vec postoji.\n");
 				fclose(f);
 				return 1;
 			}
@@ -106,7 +111,6 @@ int traziAdministratora(FILE* f, char* korisnickoIme) {
 	if (f = fopen("Administratori.txt", "r")) {
 		while (fscanf(f, "%s %s %s %s", administrator.ime, administrator.prezime, administrator.korisnickoIme, administrator.sifra) == 4) {
 			if (strcmp(administrator.korisnickoIme, korisnickoIme) == 0) {
-				printf("Korisnicko ime vec postoji.\n");
 				fclose(f);
 				return 1;
 			}

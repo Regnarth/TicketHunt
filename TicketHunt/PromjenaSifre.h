@@ -18,7 +18,7 @@ int provjeraPostojanjaKorImena(char *file,char *korIme);
 int promjenaSifre(char *file);
 void mijenjajSifru();
 static int provjeraDuzineSifre(char* sifra);
-void mijenjajSifru();
+void mijenjajSifru(USER *user);
 
 
 #endif // PROMJENA_SIFRE_H
