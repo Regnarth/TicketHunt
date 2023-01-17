@@ -22,15 +22,15 @@ void KupovinaUlaznice(USER* korisnik)
         printf("Unesite Vase ime: ");
         scanf("%s",ime);
     }
-    if(nacinPreuzimanja()==1); // preuzimanjeee doraditiiii
-    else ispisDogadjaja(&pom);  //doraditi
+    if(nacinPreuzimanja()==1)printf("Preuzmite vasu ulaznicu na adresi: ul. Mihajla Seve 23");else; // preuzimanje
+    else ispisDogadjaja(&pom);
     if( provjeraRasprodanosti())
     {
         printf("Ulaznice za ovaj dogadjaj su rasprodate!\n");
     }
     else
     {
-        //zavrsiti
+        
         if(korisnik->kredit>=pom.cijena_ulaznice)
         {
             korisnik->kredit-=pom.cijena_ulaznice;
@@ -102,7 +102,8 @@ int provjeraPostojanja(DOGADJAJ* dogadjaj)
         {
             if (strcmp(dogadjaj->naziv, temp.naziv) == 0)
             {
-                printf("Ispis dogadjaja - napraviti naknadno");
+                printf("%s %d.%d.%d %d:%d %s %d %d %d %d\n",temp.naziv,temp.datum.dan,temp.datum.mjesec,temp.datum.godina,temp.vrijeme.sat, temp.vrijeme.minut, temp.mjesto,
+                      temp.cijena_ulaznice, temp.broj_mjesta, temp.broj_prodatih_ulaznica, temp.kupuje_na_ime);
                 return 1;
             }
         }
@@ -180,7 +181,7 @@ void memorisanjeUlaznice(DOGADJAJ* pom,USER* korisnik,char* ime)
         }
         else fprintf(fp, "%s %d.%d.%d %d:%d %s %d %d %d %s \n", pom->naziv, pom->datum.dan,
                          pom->datum.mjesec, pom->datum.godina, pom->vrijeme.sat, pom->vrijeme.minut, pom->mjesto,
-                         pom->cijena_ulaznice, pom->broj_mjesta, pom->broj_prodatih_ulaznica, "Bez","Imena" );
+                         pom->cijena_ulaznice, pom->broj_mjesta, pom->broj_prodatih_ulaznica, "Bez Imena" );
         fclose(fp);
     }
 
