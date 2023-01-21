@@ -64,3 +64,4 @@ int provjeriUsername(char* username)
     }
     return 0;
 }
+nd);
