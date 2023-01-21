@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Prijava.h"
-#include "Prijava.c"
-void odjavaSaSistema(PRIJAVLJEN* prijavljen)
+#include "PrijavaNaSistem.h"
+#include "OdjavaSaSistema.h"
+#include "LoadConfig.h"
+void odjavaSaSistema(char* prijavljen)
 {
     char* linija_za_izmjenu;
     FILE* f;
-    int broj_linije=0;
-    int odgovor=0;
+    int broj_linije = 0;
+    int odgovor = 0;
     int odgovor_validan = 0;
     while (odgovor_validan == 0)
     {
@@ -18,59 +19,59 @@ void odjavaSaSistema(PRIJAVLJEN* prijavljen)
             odgovor_validan = 1;
         }
     }
-    if(f=fopen("Prijavljeni korisnici.txt", "r"))
+    if (f = fopen(concat(CONFIG_DEV_FOLDER,"Prijavljeni korisnici.txt"), "r"))
     {
         int lineLength = 255;
-        char line[lineLength];
-        int ukupan_br_linija=0;
-        while(fgets(line, lineLength, f))
-    {
-        ukupan_br_linija++;
-        char* pch;
-        pch = strtok (line," ");
-        char* username = pch;
-        if(strcmp(username,prijavljen->korisnickoIme)==0)
+        char line[255];
+        int ukupan_br_linija = 0;
+        while (fgets(line, lineLength, f))
         {
-            broj_linije=ukupan_br_linija;
+            ukupan_br_linija++;
+            char* pch;
+            pch = strtok(line, " ");
+            char* username = pch;
+            if (strcmp(username, prijavljen) == 0)
+            {
+                broj_linije = ukupan_br_linija;
+            }
         }
-    }
-    fclose(f);
-    izmjenaLinije(broj_linije);
+        fclose(f);
+        izmjenaLinije(broj_linije);
     }
 }
 
 void izmjenaLinije(int broj_linije)
 {
     FILE* f;
-    char* linija_za_izmjenu="";
-    if(f=fopen("Prijavljeni korisnici.txt", "r"))
+    char* linija_za_izmjenu = "";
+    if (f = fopen(concat(CONFIG_DEV_FOLDER,"Prijavljeni korisnici.txt"), "r"))
     {
         int lineLength = 255;
-        char line[lineLength];
-        int ukupan_br_linija=0;
-        while(fgets(line, lineLength, f))
+        char line[255];
+        int ukupan_br_linija = 0;
+        while (fgets(line, lineLength, f))
         {
             ukupan_br_linija++;
-            if(ukupan_br_linija==broj_linije)
+            if (ukupan_br_linija == broj_linije)
             {
-                linija_za_izmjenu=line;
+                linija_za_izmjenu = line;
 
                 char* pch;
-                pch = strtok (line," ");
+                pch = strtok(line, " ");
                 char* username = pch;
 
-                pch = strtok (NULL," ");
+                pch = strtok(NULL, " ");
                 char* sifra = pch;
 
-                pch = strtok (NULL," ");
+                pch = strtok(NULL, " ");
                 char* broj_prijava = pch;
 
-                pch = strtok (NULL," ");
+                pch = strtok(NULL, " ");
                 char* odjava = pch;
-                odjava="1";
-                char nova_linija[255]="";
-                strcat(nova_linija,username);
-                strcat(nova_linija," ");
+                odjava = "1";
+                char nova_linija[255] = "";
+                strcat(nova_linija, username);
+                strcat(nova_linija, " ");
                 strcat(nova_linija, sifra);
                 strcat(nova_linija, " ");
                 strcat(nova_linija, broj_prijava);
@@ -79,7 +80,7 @@ void izmjenaLinije(int broj_linije)
                 strcat(nova_linija, " ");
                 strcat(nova_linija, "\n");
                 fclose(f);
-                izmjena(broj_linije,nova_linija);
+                izmjena(broj_linije, nova_linija);
                 printf("Uspjesno ste se odjavili! ");
             }
         }
@@ -92,25 +93,25 @@ void izmjena(int broj_linije, char* nova_linija)
     char line[1000];
     FILE* f1;
     FILE* f2;
-    if(f1 = fopen("Prijavljeni korisnici.txt", "r"))
-       {
-       if(f2 = fopen("replace.tmp", "w"))
+    if (f1 = fopen(concat(CONFIG_DEV_FOLDER,"Prijavljeni korisnici.txt"), "r"))
     {
-    br = 0;
-    while ((fgets(line, 1000, f1)) != NULL)
-    {
-        br++;
-        if (br == broj_linije)
-            fputs(nova_linija, f2);
-        else
-            fputs(line, f2);
-    }
-    fclose(f1);
-    fclose(f2);
-    remove("Prijavljeni korisnici.txt");
-    rename("replace.tmp", "Prijavljeni korisnici.txt");
-    return 0;
-    }
+        if (f2 = fopen(concat(CONFIG_DEV_FOLDER,"replace.tmp"), "w"))
+        {
+            br = 0;
+            while ((fgets(line, 1000, f1)) != NULL)
+            {
+                br++;
+                if (br == broj_linije)
+                    fputs(nova_linija, f2);
+                else
+                    fputs(line, f2);
+            }
+            fclose(f1);
+            fclose(f2);
+            remove(concat(CONFIG_DEV_FOLDER, "Prijavljeni korisnici.txt"));
+            rename(concat(CONFIG_DEV_FOLDER, "replace.tmp"), concat(CONFIG_DEV_FOLDER, "Prijavljeni korisnici.txt"));
+            return 0;
+        }
     }
 }
 int validacijaOdjave(int odgovor)
@@ -120,5 +121,4 @@ int validacijaOdjave(int odgovor)
     else
         return 0;
 }
-
 

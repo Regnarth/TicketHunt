@@ -1,5 +1,6 @@
 #include "BrisanjeDogadjaja.h"
 #include "KreiranjeDogadjaja.h"
+#include "LoadConfig.h"
 
 void brisanjeDogadjaja() {
 
@@ -8,7 +9,7 @@ void brisanjeDogadjaja() {
 	scanf("%s", IDDogadjaja);
 	while (!provjeraID(IDDogadjaja)) {
 		printf("Dogadjaj ne postoji. Izaberite ponovo.\n");
-		scanf("%s", IDDogadjaja);
+		scanf("%s", IDDogadjaja); 
 	}
 	if (provjeraUlaznica(IDDogadjaja)) {
 		ponistiUlaznice(IDDogadjaja);
@@ -21,7 +22,7 @@ void brisanjeDogadjaja() {
 
 int provjeraUlaznica(char* IDDogadjaja) {
 	FILE* fp = 0;
-	if (fp = fopen("Ulaznice.txt", "r")) {
+	if (fp = fopen(concat(CONFIG_DEV_FOLDER, "Ulaznice.txt"), "r")) {
 		char izraz[250] = " ";
 		if (fgets(izraz, 250, fp) == NULL) {
 			fclose(fp);
@@ -35,14 +36,14 @@ int provjeraUlaznica(char* IDDogadjaja) {
 
 int ponistiUlaznice(char* IDDogadjaja) {
 	FILE* fp = 0, * f = 0, * f1 = 0;
-	if (fp = fopen("Ulaznice.txt", "r"))
+	if (fp = fopen(concat(CONFIG_DEV_FOLDER,"Ulaznice.txt"), "r"))
 	{
 		ULAZNICE* ulaznice = 0;
 		char ime[20] = " ";
 		char sifra[20] = " ";
 		DOGADJAJ pom;
-		if (f = fopen("SifraKorisnicko.txt", "r")) {
-			if (f1 = fopen("pom.txt", "w")) {
+		if (f = fopen(concat(CONFIG_DEV_FOLDER,"SifraKorisnicko.txt"), "r")) {
+			if (f1 = fopen(concat(CONFIG_DEV_FOLDER,"pom.txt"), "w")) {
 				char korisnickoIme[20] = " ";
 				char sifra1[20] = " ";
 				while (fscanf(fp, "%s %s %s %d.%d.%d %d:%d %s %d %d %d %s", sifra, pom.ID, pom.naziv, &pom.datum.dan,
@@ -70,12 +71,12 @@ int ponistiUlaznice(char* IDDogadjaja) {
 			return 0;
 		}
 
-		if (remove("SifraKorisnicko.txt") != 0) {
+		if (remove(concat(CONFIG_DEV_FOLDER, "SifraKorisnicko.txt")) != 0) {
 			fclose(fp);
 			return 0;
 		}
 
-		rename("pom.txt", "SifraKorisnicko.txt");
+		rename(concat(CONFIG_DEV_FOLDER, "pom.txt"), concat(CONFIG_DEV_FOLDER, "SifraKorisnicko.txt"));
 		if (!upisiUlaznice(ulaznice)) {
 			fclose(fp);
 			return 0;
@@ -117,12 +118,12 @@ void dodajUlaznicu(ULAZNICE** ulaznice, char* sifra, DOGADJAJ* temp, char* ime) 
 
 int upisiUlaznice(ULAZNICE* lista) {
 	FILE* f = 0;
-	if (f = fopen("Ulaznice.txt", "w")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER,"Ulaznice.txt"), "w")) {
 		while (lista) {
 			fprintf(f, "%s %s %s %d.%d.%d %d:%d %s %d %d %d %s\n", lista->sifra, lista->dogadjaj.ID, lista->dogadjaj.naziv, lista->dogadjaj.datum.dan, lista->dogadjaj.datum.mjesec, lista->dogadjaj.datum.godina,
 				lista->dogadjaj.vrijeme.sat, lista->dogadjaj.vrijeme.minut, lista->dogadjaj.mjesto, lista->dogadjaj.cijena_ulaznice,
 				lista->dogadjaj.broj_mjesta, lista->dogadjaj.broj_prodatih_ulaznica, lista->ime);
-			
+
 			lista = lista->next;
 		}
 		fclose(f);
@@ -146,7 +147,7 @@ int brisiDogadjaj(char* IDDogadjaja) {
 
 	FILE* fp;
 	ListaDogadjaja* lista = 0;
-	if (fp = fopen("Dogadjaji.txt", "r"))
+	if (fp = fopen(concat(CONFIG_DEV_FOLDER,"Dogadjaji.txt"), "r"))
 	{
 		DOGADJAJ temp;
 		while (fscanf(fp, "%s %d.%d.%d %d:%d %s %d %d %d %d %s\n", temp.naziv, &temp.datum.dan,
@@ -157,7 +158,7 @@ int brisiDogadjaj(char* IDDogadjaja) {
 			}
 			else {
 				strcat(temp.naziv, ".txt");
-				if (remove(temp.naziv) != 0) {
+				if (remove(concat(CONFIG_DATA_FOLDER, temp.naziv)) != 0) {
 					fclose(fp);
 					printf("Neuspjesno brisanje datoteke sa opisom dogadjaja.\nNeuspjesno brisanje.\n");
 					return 0;
@@ -174,12 +175,12 @@ int brisiDogadjaj(char* IDDogadjaja) {
 
 	invertujListu(&lista);
 
-	if (!upisiDogadjaje(lista)){
-		brisi(&lista);
+	if (!upisiDogadjaje(lista)) {
+		brisidog(&lista);
 		return 0;
 	}
 
-	brisi(&lista);
+	brisidog(&lista);
 	return 1;
 }
 
@@ -216,12 +217,12 @@ void invertujListu(ListaDogadjaja** glava) {
 
 int upisiDogadjaje(ListaDogadjaja* lista) {
 	FILE* f = 0;
-	if (f = fopen("Dogadjaji.txt", "w")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER,"Dogadjaji.txt"), "w")) {
 		while (lista) {
 			fprintf(f, "%s %d.%d.%d %d:%d %s %d %d %d %d %s\n", lista->dogadjaj.naziv, lista->dogadjaj.datum.dan, lista->dogadjaj.datum.mjesec, lista->dogadjaj.datum.godina,
 				lista->dogadjaj.vrijeme.sat, lista->dogadjaj.vrijeme.minut, lista->dogadjaj.mjesto, lista->dogadjaj.cijena_ulaznice,
 				lista->dogadjaj.broj_mjesta, lista->dogadjaj.broj_prodatih_ulaznica, lista->dogadjaj.kupuje_na_ime, lista->dogadjaj.ID);
-			
+
 			lista = lista->next;
 		}
 		fclose(f);
@@ -232,7 +233,7 @@ int upisiDogadjaje(ListaDogadjaja* lista) {
 		return 0;
 	}
 }
-void brisi(ListaDogadjaja** lista) {
+void brisidog(ListaDogadjaja** lista) {
 
 	while (*lista) {
 		ListaDogadjaja* pom = *lista;

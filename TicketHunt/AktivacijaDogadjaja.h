@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #ifndef AKTIVACIJA_DOGADJAJA_H
 #define AKTIVACIJA_DOGADJAJA_H
 
@@ -13,8 +14,8 @@ typedef struct event {
 } EVENT;
 
 void aktivirajDogadjaj();
-void dodaj(EVENT** event, char* IDDogadjaja)
+static void dodaj(EVENT** event, char* IDDogadjaja);
 int ukloniDogadjaj(FILE* fp, EVENT* event);
-void brisi(EVENT** event);
+static void brisi(EVENT** event);
 
 #endif

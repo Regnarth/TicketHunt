@@ -8,6 +8,8 @@
 
 void suspendujNalog();
 int provjeraSuspenzije(FILE* f, char* korisnickoIme);
-int memorisiNalog(FILE* f, char* korisnickoIme);
+int memorisiNalog(FILE* f, char* korisnickoIme); 
+int provjeriUsernameKorisnika(char* username);
+   
 
 #endif

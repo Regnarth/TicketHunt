@@ -1,6 +1,7 @@
 #pragma once
 #include "SuspendovanjeNaloga.h"
 #include"AktivacijaNaloga.h"
+#include "LoadConfig.h"
 
 void aktivirajNalog() {
 
@@ -17,7 +18,7 @@ void aktivirajNalog() {
 
 	NALOG* nalog = 0;
 
-	if (f = fopen("Suspendovani.txt", "r")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER, "Suspendovani.txt"), "r")) {
 		char pom[MAX];
 		while (fscanf(f, "%s", pom) == 1) {
 			if (strcmp(korisnickoIme, pom) != 0)
@@ -25,14 +26,14 @@ void aktivirajNalog() {
 		}
 		fclose(f);
 	}
-	else{
+	else {
 		printf("Neuspjesna aktivacija.\n");
 		return;
 	}
 	invertuj(&nalog);
 	if (ukloniNalog(f, nalog))
 		printf("Nalog je uspjesno aktiviran.\n");
-	
+
 	brisi(&nalog);
 }
 
@@ -50,7 +51,7 @@ void dodaj(NALOG** nalog, char* korisnickoIme) {
 
 int ukloniNalog(FILE* f, NALOG* nalog) {
 
-	if (f = fopen("Suspendovani.txt", "w")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER, "Suspendovani.txt"), "w")) {
 		while (nalog) {
 			fprintf(f, "%s\n", nalog->korisnickoIme);
 			nalog = nalog->next;
@@ -66,10 +67,10 @@ int ukloniNalog(FILE* f, NALOG* nalog) {
 
 void brisi(NALOG** nalog) {
 
-	while(*nalog){
-	NALOG* pom = *nalog;
-	*nalog = pom->next;
-	free(pom);
+	while (*nalog) {
+		NALOG* pom = *nalog;
+		*nalog = pom->next;
+		free(pom);
 	}
 }
 

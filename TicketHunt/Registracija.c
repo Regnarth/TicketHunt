@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "Registracija.h"
-
+#include "LoadConfig.h"
 void register_user()
 {
     USER user;
@@ -10,14 +10,14 @@ void register_user()
     scanf("%s", user.username);
     if (!provjeriUsername(user.username))
     {
-        if (fp = fopen("Korisnici.txt", "a+"))
+        if (fp = fopen(concat(CONFIG_DEV_FOLDER,"Korisnici.txt"), "a+"))
         {
 
-            printf("Unesite vase ime: ");
+            printf("Enter your name: ");
             scanf("%s", user.ime);
-            printf("Unesite vase prezime: ");
+            printf("Enter your lastname: ");
             scanf("%s", user.prezime);
-            printf("Unesite sifru: ");
+            printf("Enter a password: ");
             scanf("%s", user.password);
             fprintf(fp, "%s %s %s %s\n", user.ime, user.prezime, user.username, user.password);
             fclose(fp);
@@ -35,7 +35,7 @@ int provjeriUsername(char* username)
     USER pom;
     FILE* fp;
     int i = 0;
-    if (fp = fopen("Korisnici.txt", "r"))
+    if (fp = fopen(concat(CONFIG_DEV_FOLDER,"Korisnici.txt"), "r"))
     {
         while (fscanf(fp, "%s %s %s %s", pom.ime, pom.prezime, pom.username, pom.password) != EOF)
         {
@@ -46,7 +46,7 @@ int provjeriUsername(char* username)
         }
         fclose(fp);
     }
-    if (fp = fopen("Administratori.txt", "r"))
+    if (fp = fopen(concat(CONFIG_DEV_FOLDER,"Administratori.txt"), "r"))
     {
         while (fscanf(fp, "%s %s %s %s", pom.ime, pom.prezime, pom.username, pom.password) != EOF)
         {
@@ -54,7 +54,7 @@ int provjeriUsername(char* username)
         }
         fclose(fp);
     }
-    if (fp = fopen("Klijenti.txt", "r"))
+    if (fp = fopen(concat(CONFIG_DEV_FOLDER,"Klijenti.txt"), "r"))
     {
         while (fscanf(fp, "%s %s %s %s", pom.ime, pom.prezime, pom.username, pom.password) != EOF)
         {
@@ -64,4 +64,3 @@ int provjeriUsername(char* username)
     }
     return 0;
 }
-nd);

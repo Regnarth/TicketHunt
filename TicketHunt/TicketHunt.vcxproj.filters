@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Registracija.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PrijavaNaSistem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KreiranjeNaloga.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BrisanjeNaloga.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PromjenaSifre.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PonistavanjeSifre.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SuspendovanjeNaloga.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PrijavaPrvogAdministratora.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AktivacijaDogadjaja.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AktivacijaNaloga.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlokiranjeDogadjaja.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BrisanjeDogadjaja.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KreiranjeDogadjaja.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KreiranjeIzvjestaja.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KupovinaUlaznice.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OdjavaSaSistema.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OtkazivanjeKupljeneUlaznice.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PregledNaloga.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PregledListeDogadjaja.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PonistavanjeUlaznice.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PregledDogadjaja.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PregledUlaznica.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadConfig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PromjenaSifre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SuspendovanjeNaloga.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Registracija.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PonistavanjeSifre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PrijavaNaSistem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KreiranjeNaloga.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BrisanjeNaloga.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PrijavaPrvogAdministratora.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AktivacijaDogadjaja.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AktivacijaNaloga.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlokiranjeDogadjaja.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BrisanjeDogadjaja.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KreiranjeDogadjaja.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KreiranjeIzvjestaja.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KupovinaUlaznice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OtkazivanjeKupljeneUlaznice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PregledNaloga.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PregledListeDogadjaja.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PonistavanjeUlaznice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OdjavaSaSistema.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PregledDogadjaja.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PregledUlaznica.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,78 +1,78 @@
 #include "PrijavaPrvogAdministratora.h"
 #include "KreiranjeNaloga.h"
+#include "LoadConfig.h"
 
-void prviAdministrator() {
+int prviAdministrator(USER* user) {
 
-	ADMINISTRATOR administrator;
-
-	char korisnickoIme[MAX];
-	char sifra[MAX];
+	char korisnickoIme[MAX] = "";
+	char sifra[MAX] = "";
+	char c = 0;
 	FILE* f = 0;
-	if (f = fopen("PrviAdministrator.txt", "r")) {
-		fscanf(f, "%s %s", korisnickoIme, sifra);
+	if (f = fopen(concat(CONFIG_DEV_FOLDER, "PrviAdministrator.txt"), "r")) {
+		fscanf(f, "%s %s %c", korisnickoIme, sifra, &c);
 		fclose(f);
 	}
 	else {
 		printf("Neuspjesno otvaranje datoteke.\n");
 		printf("Neuspjela prijava.\n");
-		return;
+		return 0;
 	}
 	printf("Unesite vase ime i prezime.\n");
-	printf("Ime: "); scanf("%s", administrator.ime);
-	printf("Prezime: "); scanf("%s", administrator.prezime);
+	printf("Ime: "); scanf("%s", user->ime);
+	printf("Prezime: "); scanf("%s", user->prezime);
 	printf("Vase korisnicko ime je: %s, a sifra: %s\n", korisnickoIme, sifra);
 	printf("Unesite dato korisnicko ime i sifru.\n");
 	printf("Korisnicko ime : ");
-	scanf("%s", administrator.korisnickoIme);
+	scanf("%s", user->username);
 	printf("Sifra: ");
-	scanf("%s", administrator.sifra);
+	scanf("%s", user->password);
 
-	while (strcmp(administrator.korisnickoIme, korisnickoIme) != 0 || strcmp(administrator.sifra, sifra) != 0) {
+	while (strcmp(user->username, korisnickoIme) != 0 || strcmp(user->password, sifra) != 0) {
 		printf("Neispravan unos podataka.\n");
-		if (strcmp(administrator.korisnickoIme, korisnickoIme) != 0) {
+		if (strcmp(user->username, korisnickoIme) != 0) {
 			printf("Korisnicko ime : ");
-			scanf("%s", administrator.korisnickoIme);
+			scanf("%s", user->username);
 		}
-		if (strcmp(administrator.sifra, sifra) != 0) {
+		if (strcmp(user->password, sifra) != 0) {
 			printf("Sifra: ");
-			scanf("%s", administrator.sifra);
+			scanf("%s", user->password);
 		}
 	}
 
 	printf("Unesite novu sifru. Sifra mora imati bar 8 znakova od kojih je jedan veliko slovo, a jedan broj.\n");
-	printf("sifra: "); scanf("%s", administrator.sifra);
+	printf("sifra: "); scanf("%s", user->password);
 
-	while (istaSifra(administrator.sifra, sifra) || provjeraFormataSifre(administrator.sifra) == 0) {
-		printf("sifra: "); scanf("%s", administrator.sifra);
+	while (istaSifra(user->password, sifra) || provjeraFormataSifre(user->password) == 0) {
+		printf("sifra: "); scanf("%s", user->password);
 	}
 
-	administrator.brojPrijava = 1;
-	if (f = fopen("PrviAdministrator.txt", "w")) {
-		fprintf(f, "%s %s", administrator.korisnickoIme, administrator.sifra);
+	if (f = fopen(concat(CONFIG_DEV_FOLDER, "PrviAdministrator.txt"), "w")) {
+		fprintf(f, "%s %s %c", user->username, user->password, '-');
 		fclose(f);
 	}
 	else {
 		printf("Neuspjesno azuriranje podataka.\n");
-		return;
+		return 0;
 	}
-	if (f = fopen("Administratori.txt", "a")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER, "Administratori.txt"), "a")) {
 
-		fprintf(f, "%s %s %s %s\n", administrator.ime, administrator.prezime, administrator.korisnickoIme, administrator.sifra);
+		fprintf(f, "%s %s %s %s\n", user->ime, user->prezime, user->username, user->password);
 		fclose(f);
 	}
 	else {
 		printf("Neuspjesno otvaranje datoteke.\n");
-		return;
+		return 0;
 	}
-	if (f = fopen("Prijavljeni korisnici.txt", "a")) {
-		fprintf(f, "%s %s %d %d\n", administrator.korisnickoIme, administrator.sifra, administrator.brojPrijava, 0);
+	if (f = fopen(concat(CONFIG_DEV_FOLDER, "Prijavljeni korisnici.txt"), "a")) {
+		fprintf(f, "%s %s %d %d\n", user->username, user->password, 1, 0);
 		fclose(f);
 	}
 	else {
 		printf("Neuspjesna prijava.\n");
-		return;
+		return 0;
 	}
 	printf("Prijava uspjesna.\n");
+	return 1;
 }
 
 int istaSifra(char* sifra1, char* sifra2) {

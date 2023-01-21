@@ -1,13 +1,13 @@
 #include "BrisanjeNaloga.h"
-//#include "Registracija.h"
-
+#include "Registracija.h"
+#include "LoadConfig.h"
 void obrisiNalog() {
 
 	char korisnickoIme[MAX];
-	printf("Unesite korisnicko ime naloga koji zelite da aktivirate.\n");
+	printf("Unesite korisnicko ime naloga koji zelite da obrisete.\n");
 	scanf("%s", korisnickoIme);
 
-	if (!provjeraUsername(korisnickoIme)) 
+	if (!provjeriUsername(korisnickoIme))
 	{
 		printf("Nalog ne postoji.\n");
 		return;
@@ -16,43 +16,43 @@ void obrisiNalog() {
 	ACCOUNT* acc = 0;
 	FILE* f;
 
-	if (f = fopen("Korisnici.txt", "r"))
+	if (f = fopen(concat(CONFIG_DEV_FOLDER,"Korisnici.txt"), "r"))
 	{
 		USER pom;
 		while (fscanf(f, "%s %s %s %s", pom.ime, pom.prezime, pom.username, pom.password) != EOF)
 		{
 			if (strcmp(korisnickoIme, pom.username) != 0)
-				dodaj(&acc, &pom);
+				dodajNalog(&acc, &pom);
 		}
 		fclose(f);
 	}
 
-	invertuj(&acc);
+	invertujNaloge(&acc);
 
-	if (ukloniNalog(f, acc))
+	if (ukloniNaloge(f, acc))
 	{
 		printf("Nalog je uspjesno obrisan.\n");
 	}
 
-	brisi(&acc);
+	brisiNalog(&acc);
 }
 
-void dodaj(ACCOUNT** acc, USER* pom) {
+void dodajNalog(ACCOUNT** acc, USER* pom) {
 
 	ACCOUNT* novi = (ACCOUNT*)malloc(sizeof(ACCOUNT));
 
 	if (!novi) return;
 
-	strcpy(novi->ime, pom->ime);
-	strcpy(novi->prezime, pom->prezime);
-	strcpy(novi->username, pom->username);
-	strcpy(novi->password, pom->password);
+	strcpy(novi->user.ime, pom->ime);
+	strcpy(novi->user.prezime, pom->prezime);
+	strcpy(novi->user.username, pom->username);
+	strcpy(novi->user.password, pom->password);
 
 	novi->next = *acc;
 	*acc = novi;
 }
 
-void invertuj(ACCOUNT** glava) {
+void invertujNaloge(ACCOUNT** glava) {
 	ACCOUNT* p1 = *glava, * p2 = 0, * p3;
 	while (p1)
 	{
@@ -64,9 +64,9 @@ void invertuj(ACCOUNT** glava) {
 	*glava = p2;
 }
 
-int ukloniNalog(FILE* f, ACCOUNT* nalog) {
+int ukloniNaloge(FILE* f, ACCOUNT* nalog) {
 
-	if (f = fopen("Korisnici.txt", "w")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER,"Korisnici.txt"), "w")) {
 		while (nalog)
 		{
 			fprintf(f, "%s %s %s %s\n", nalog->user.ime, nalog->user.prezime, nalog->user.username, nalog->user.password);
@@ -81,7 +81,7 @@ int ukloniNalog(FILE* f, ACCOUNT* nalog) {
 		return 0;
 	}
 }
-void brisi(ACCOUNT** nalog) {
+void brisiNalog(ACCOUNT** nalog) {
 
 	while (*nalog)
 	{

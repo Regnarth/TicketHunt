@@ -28,6 +28,6 @@ int brisiDogadjaj(char* IDDogadjaja);
 void dodajUListu(ListaDogadjaja** lista, DOGADJAJ* temp);
 void invertujListu(ListaDogadjaja** glava);
 int upisiDogadjaje(ListaDogadjaja* lista);
-void brisi(ListaDogadjaja** lista);
+void brisidog(ListaDogadjaja** lista);
 
 #endif

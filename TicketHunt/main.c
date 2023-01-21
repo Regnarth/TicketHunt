@@ -28,7 +28,7 @@
 int main()
 {
 	loadConfig();
-	
+
 	struct User user; user.kredit = 100;
 	int pom;
 	do {
@@ -52,46 +52,46 @@ int main()
 				printf("Promjena sifre:10\n");
 				printf("Odjava sa sistema:11\n");
 				scanf("%d", &pom);
-			switch (pom) {
-			case 1:
-				kreirajNalog();
-				break;
-			case 2:
-				pregledNaloga();
-				break;
-			case 3:
-				aktivirajNalog();
-				break;
-			case 4:
-				suspendujNalog();
-				break;
-			case 5:
-				obrisiNalog();
-				break;
-			case 6:
-				ponistiSifru();
-				break;
-			case 7:
-				blokirajDogadjaj();
-				break;
-			case 8:
-				aktivirajDogadjaj();
-				break;
-			case 9:
-				KreiranjeIzvjestaja();
-				break;
-			case 10:
-				mijenjajSifru(&user);
-				break;
-			case 11:
-				odjavaSaSistema(user.username);
-				break;
-			default:
-				break;
+				switch (pom) {
+				case 1:
+					kreirajNalog();
+					break;
+				case 2:
+					pregledNaloga();
+					break;
+				case 3:
+					aktivirajNalog();
+					break;
+				case 4:
+					suspendujNalog();
+					break;
+				case 5:
+					obrisiNalog();
+					break;
+				case 6:
+					ponistiSifru();
+					break;
+				case 7:
+					blokirajDogadjaj();
+					break;
+				case 8:
+					aktivirajDogadjaj();
+					break;
+				case 9:
+					KreiranjeIzvjestaja();
+					break;
+				case 10:
+					mijenjajSifru(&user);
+					break;
+				case 11:
+					odjavaSaSistema(user.username);
+					break;
+				default:
+					break;
 
-			}
-			} while (pom!=11);
-			
+				}
+			} while (pom != 11);
+
 		}
 		else if (user.vrstaNaloga == 2) {
 			do {
@@ -103,34 +103,34 @@ int main()
 				printf("Promjena sifre:6\n");
 				printf("Odjava sa sistema:7\n");
 				scanf("%d", &pom);
-			switch (pom) {
-			case 1:
-				unosDogadjaja();
-				break;
-			case 2:
-				brisanjeDogadjaja();
-				break;
-			case 3:
-				pregled_prodatih_ulaznica();
-				break;
-			case 4:
-				ponistavanjeUlaznice();
-				break;
-			case 5:
-				pregledListeDogadjaja("Dogadjaji.txt");
-				break;
-			case 6:
-				mijenjajSifru(&user);
-				break;
-			case 7:
-				odjavaSaSistema(user.username);
-				break;
-			default:
-				break;
+				switch (pom) {
+				case 1:
+					unosDogadjaja();
+					break;
+				case 2:
+					brisanjeDogadjaja();
+					break;
+				case 3:
+					pregled_prodatih_ulaznica();
+					break;
+				case 4:
+					ponistavanjeUlaznice();
+					break;
+				case 5:
+					pregledListeDogadjaja("Dogadjaji.txt");
+					break;
+				case 6:
+					mijenjajSifru(&user);
+					break;
+				case 7:
+					odjavaSaSistema(user.username);
+					break;
+				default:
+					break;
 
-			}
-			} while (pom!=7);
-			
+				}
+			} while (pom != 7);
+
 		}
 		else if (user.vrstaNaloga == 3) {
 			do {
@@ -140,29 +140,30 @@ int main()
 				printf("Promjena sifre:4\n");
 				printf("Odjava sa sistema:5\n");
 				scanf("%d", &pom);
-			switch (pom) {
-			case 1:
-				PregledDogadjaja();
-				break;
-			case 2:
-				KupovinaUlaznice(&user);
-				break;
-			case 3:
-				otkazivanjeKupljeneUlaznice(user.username);
-				break;
-			case 4:
-				mijenjajSifru(&user);
-				break;
-			case 5:
-				odjavaSaSistema(user.username);
-				break;
-			default:
-				break;
+				switch (pom) {
+				case 1:
+					PregledDogadjaja();
+					break;
+				case 2:
+					KupovinaUlaznice(&user);
+					break;
+				case 3:
+					otkazivanjeKupljeneUlaznice(user.username);
+					break;
+				case 4:
+					mijenjajSifru(&user);
+					break;
+				case 5:
+					odjavaSaSistema(user.username);
+					break;
+				default:
+					break;
 
-			}
-			} while (pom!=5);
-			
+				}
+			} while (pom != 5);
+
 		}
 	}
 	return 0;
 }
+

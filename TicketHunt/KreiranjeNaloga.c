@@ -1,6 +1,6 @@
 #include "KreiranjeNaloga.h"
 #include "Registracija.h"
-
+#include "LoadConfig.h"
 void kreirajNalog() {
 
 	char vrstaNaloga[MAX];
@@ -11,7 +11,7 @@ void kreirajNalog() {
 
 	FILE* f = 0;
 
-	if (stricmp(vrstaNaloga, "klijentski") == 0) {
+	if (strcmp(vrstaNaloga, "klijentski") == 0) {
 
 		KLIJENT klijent;
 
@@ -21,7 +21,7 @@ void kreirajNalog() {
 			printf("Nalog je uspjesno kreiran.\n");
 	}
 
-	else if (stricmp(vrstaNaloga, "administratorski") == 0) {
+	else if (strcmp(vrstaNaloga, "administratorski") == 0) {
 
 		ADMINISTRATOR administrator;
 
@@ -30,7 +30,7 @@ void kreirajNalog() {
 		if (dodajAdministratora(f, &administrator))
 			printf("Nalog je uspjesno kreiran.\n");
 	}
-	
+
 	else printf("Neispravna vrsta naloga.\n");
 }
 
@@ -44,12 +44,12 @@ int dodajKlijenta(FILE* f, KLIJENT* klijent) {
 		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", klijent->korisnickoIme);
 	}
-	while (provjeriUsername(klijent->korisnickoIme)){
+	while (provjeriUsername(klijent->korisnickoIme)) {
 		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", klijent->korisnickoIme);
 	}
 
-	if (f = fopen("Klijenti.txt", "a")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER,"Klijenti.txt"), "a")) {
 
 		fprintf(f, "%s %s %s %s\n", klijent->ime, klijent->prezime, klijent->korisnickoIme, klijent->sifra);
 		fclose(f);
@@ -73,12 +73,12 @@ int dodajAdministratora(FILE* f, ADMINISTRATOR* administrator) {
 		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", administrator->korisnickoIme);
 	}
-	while (provjeriUsername(administrator->korisnickoIme)){
+	while (provjeriUsername(administrator->korisnickoIme)) {
 		printf("Korisnicko ime vec postoji.\n");
 		printf("korisnickoIme:"); scanf("%s", administrator->korisnickoIme);
 	}
 
-	if (f = fopen("Administratori.txt", "a")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER,"Administratori.txt"), "a")) {
 
 		fprintf(f, "%s %s %s %s\n", administrator->ime, administrator->prezime, administrator->korisnickoIme, administrator->sifra);
 		fclose(f);
@@ -93,7 +93,7 @@ int dodajAdministratora(FILE* f, ADMINISTRATOR* administrator) {
 int traziKlijenta(FILE* f, char* korisnickoIme) {
 	KLIJENT klijent;
 
-	if (f = fopen("Klijenti.txt", "r")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER,"Klijenti.txt"), "r")) {
 		while (fscanf(f, "%s %s %s %s", klijent.ime, klijent.prezime, klijent.korisnickoIme, klijent.sifra) == 4) {
 			if (strcmp(klijent.korisnickoIme, korisnickoIme) == 0) {
 				fclose(f);
@@ -108,7 +108,7 @@ int traziKlijenta(FILE* f, char* korisnickoIme) {
 int traziAdministratora(FILE* f, char* korisnickoIme) {
 
 	ADMINISTRATOR administrator;
-	if (f = fopen("Administratori.txt", "r")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER,"Administratori.txt"), "r")) {
 		while (fscanf(f, "%s %s %s %s", administrator.ime, administrator.prezime, administrator.korisnickoIme, administrator.sifra) == 4) {
 			if (strcmp(administrator.korisnickoIme, korisnickoIme) == 0) {
 				fclose(f);

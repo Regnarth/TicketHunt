@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #ifndef BLOKIRANJE_DOGADJAJA_H
 #define BLOKIRANJE_DOGADJAJA_H
 

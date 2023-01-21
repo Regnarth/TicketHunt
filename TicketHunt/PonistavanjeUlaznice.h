@@ -6,3 +6,5 @@
 #include <stdlib.h>
 #endif
 char sifra_ulaznice[10];
+void ponistavanjeUlaznice();
+int validacijaSifre(char* sifra);

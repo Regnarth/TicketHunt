@@ -1,9 +1,9 @@
 #include "KreiranjeDogadjaja.h"
-
+#include "LoadConfig.h"
 int unosDogadjaja() {
     DOGADJAJ dogadjaj;
     FILE* f;
-    
+
     printf("Unesite naziv dogadjaja:"); scanf("%s", dogadjaj.naziv);
     printf("Unesite mjesto odrzavanja: ");
     getchar();
@@ -16,9 +16,9 @@ int unosDogadjaja() {
     char naziv_datoteke[150];
     sprintf(naziv_datoteke, "%s.txt", dogadjaj.naziv);
 
-    if (f = fopen(naziv_datoteke, "w"))
+    if (f = fopen(concat(CONFIG_DATA_FOLDER,naziv_datoteke), "w"))
     {
-        //fprintf(f, "%s", dogadjaj.opis_dogadjaja);
+        fprintf(f, "%s", dogadjaj.opis_dogadjaja);
         fclose(f);
     }
 
@@ -79,7 +79,7 @@ int unosDogadjaja() {
 
 
     }
-    if (f = fopen("Dogadjaji.txt", "a+"))
+    if (f = fopen(concat(CONFIG_DEV_FOLDER,"Dogadjaji.txt"), "a+"))
     {
         DOGADJAJ temp;
         int provjera_postojanja = 0;
@@ -127,7 +127,7 @@ int unosDogadjaja() {
 int provjeraID(char* ID) {
     FILE* f = 0;
     DOGADJAJ temp;
-    if (f = fopen("Dogadjaji.txt", "r")) {
+    if (f = fopen(concat(CONFIG_DEV_FOLDER,"Dogadjaji.txt"), "r")) {
         while (fscanf(f, "%s %d.%d.%d %d:%d %s %d %d %d %d %s\n", temp.naziv, &temp.datum.dan, &temp.datum.mjesec,
             &temp.datum.godina, &temp.vrijeme.sat, &temp.vrijeme.minut, temp.mjesto, &temp.cijena_ulaznice,
             &temp.broj_mjesta, &temp.broj_prodatih_ulaznica, &temp.kupuje_na_ime, temp.ID) != EOF)

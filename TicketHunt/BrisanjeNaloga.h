@@ -13,9 +13,9 @@ typedef  struct account {
 } ACCOUNT;
 
 void obrisiNalog();
-void dodaj(ACCOUNT** acc, USER* pom);
-void invertuj(ACCOUNT** glava);
-int ukloniNalog(FILE* f, ACCOUNT* nalog);
-void brisi(ACCOUNT** nalog);
+void dodajNalog(ACCOUNT** acc, USER* pom);
+void invertujNaloge(ACCOUNT** glava);
+int ukloniNaloge(FILE* f, ACCOUNT* nalog);
+void brisiNalog(ACCOUNT** nalog);
 
 #endif

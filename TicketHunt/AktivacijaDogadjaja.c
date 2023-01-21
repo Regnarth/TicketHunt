@@ -1,5 +1,6 @@
 #include "AktivacijaDogadjaja.h"
 #include "BlokiranjeDogadjaja.h"
+#include "LoadConfig.h"
 
 void aktivirajDogadjaj()
 {
@@ -7,7 +8,7 @@ void aktivirajDogadjaj()
     printf("Unesite ID dogadjaja koji zelite da aktivirate:\n");
     scanf("%s", IDDogadjaja);
     //gets(IDDogadjaja);
-    FILE* fp;
+    FILE* fp = 0;
     while (provjeraAktivnostiDogadjaja(fp, IDDogadjaja) == 0)
     {
         printf("Dogadjaj nije blokiran.\n");
@@ -15,10 +16,10 @@ void aktivirajDogadjaj()
     }
 
     EVENT* event = 0;
-    if (fp = fopen("Blokirani.txt", "r"))
+    if (fp = fopen(concat(CONFIG_DEV_FOLDER, "Blokirani.txt"), "r"))
     {
         char temp[MAX_ID_LENGHT];
-        while (fgets(temp, MAX_ID_LENGHT, fp))
+        while (fscanf(fp, "%s", temp) != EOF)
         {
             if (strcmp(temp, IDDogadjaja) != 0)
             {
@@ -51,7 +52,7 @@ void dodaj(EVENT** event, char* IDDogadjaja)
 
 int ukloniDogadjaj(FILE* fp, EVENT* event)
 {
-    if (fp = fopen("Blokirani.txt", "w"))
+    if (fp = fopen(concat(CONFIG_DEV_FOLDER, "Blokirani.txt"), "w"))
     {
         while (event != 0)
         {

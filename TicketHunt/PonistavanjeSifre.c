@@ -1,12 +1,12 @@
 #include "PonistavanjeSifre.h"
-
-void ponistiSifru(){
+#include "LoadConfig.h"
+void ponistiSifru() {
 
 	char korisnickoIme[MAX];
 	printf("Unesite korisnicko ime naloga kome zelite ponistiti sifru.\n");
 	scanf("%s", korisnickoIme);
 	FILE* f = 0;
-	if(!provjeraPostojanja(f, korisnickoIme)) {
+	if (!provjeraPostojanja(f, korisnickoIme)) {
 		printf("Nalog ne postoji.\n");
 	}
 
@@ -17,7 +17,7 @@ void ponistiSifru(){
 
 int provjeraPostojanja(FILE* f, char* korisnickoIme) {
 
-	if (f = fopen("Klijenti.txt", "r")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER,"Klijenti.txt"), "r")) {
 		char pom1[MAX];
 		while (fscanf(f, "%s", pom1) == 1) {
 			if (strcmp(korisnickoIme, pom1) == 0) {
@@ -27,7 +27,7 @@ int provjeraPostojanja(FILE* f, char* korisnickoIme) {
 		}
 		fclose(f);
 	}
-if (f = fopen("Korisnici.txt", "r")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER,"Korisnici.txt"), "r")) {
 		char pom2[MAX];
 		while (fscanf(f, "%s", pom2) == 1) {
 			if (strcmp(korisnickoIme, pom2) == 0) {
@@ -43,7 +43,7 @@ if (f = fopen("Korisnici.txt", "r")) {
 
 int memorisiSifru(FILE* f, char* korisnickoIme) {
 
-	if (f = fopen("PonisteneSifre.txt", "a")) {
+	if (f = fopen(concat(CONFIG_DEV_FOLDER,"PonisteneSifre.txt"), "a")) {
 
 		fprintf(f, "%s\n", korisnickoIme);
 		fclose(f);
