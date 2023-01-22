@@ -213,7 +213,7 @@ int prijava(char* file, USER* user)
 	}
 	if (azurirajBrojPrijava(korIme))
 	{
-		if (ocitajBrojPrijava(korIme) == N)
+		if (ocitajBrojPrijava(korIme) == CONFIG_N)
 		{
 			mijenjajSifru(user);
 			nulirajBrojPrijava(korIme);
